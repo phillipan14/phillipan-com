@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phillip Guangning An</title>
+<meta name="description" content="Personal site of Phillip Guangning An — co-founder of Skylarq, previously Homebase (YC W21). Schwarzman Scholar at Tsinghua.">
+<meta name="author" content="Phillip Guangning An">
+<meta property="og:title" content="Phillip Guangning An">
+<meta property="og:description" content="Co-founder of Skylarq; previously Homebase (YC W21). Schwarzman Scholar at Tsinghua.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://phillipan.com">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' font-family='Georgia,serif'%3EP%3C/text%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #f7f4ec;
+    --text: #1c1a17;
+    --text-2: #4a463f;
+    --text-3: #7a7468;
+    --rule: #d8d2c1;
+    --link: #5a3a1f;
+    --link-hover: #1c1a17;
+    --accent: #8a3a1c;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14130f;
+      --text: #e8e1d0;
+      --text-2: #b8b1a0;
+      --text-3: #807968;
+      --rule: #2c2920;
+      --link: #d4a86a;
+      --link-hover: #e8e1d0;
+      --accent: #d4a86a;
+    }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 17px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+  body {
+    font-family: "Charter", "Iowan Old Style", "Iowan", "Palatino Linotype", "Palatino", "Georgia", "Times New Roman", serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    font-feature-settings: "kern", "liga", "onum";
+    padding: 48px 24px 96px;
+  }
+
+  .wrap {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  header {
+    margin-bottom: 56px;
+  }
+
+  h1 {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+
+  .intro p {
+    color: var(--text-2);
+    font-size: 17px;
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+
+  .intro p:last-child {
+    margin-bottom: 0;
+  }
+
+  hr {
+    border: 0;
+    height: 1px;
+    background: var(--rule);
+    margin: 48px 0;
+  }
+
+  h2 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-3);
+    margin-bottom: 24px;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", sans-serif;
+  }
+
+  section {
+    margin-bottom: 0;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: 24px;
+    margin-bottom: 16px;
+    align-items: baseline;
+  }
+
+  .row:last-child {
+    margin-bottom: 0;
+  }
+
+  .year {
+    font-size: 14px;
+    color: var(--text-3);
+    font-variant-numeric: tabular-nums;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", sans-serif;
+    font-weight: 500;
+    padding-top: 2px;
+  }
+
+  .item {
+    line-height: 1.55;
+  }
+
+  .item .title {
+    color: var(--text);
+  }
+
+  .item .sub {
+    color: var(--text-3);
+    font-size: 15px;
+    font-style: italic;
+    display: block;
+    margin-top: 2px;
+  }
+
+  a {
+    color: var(--link);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+
+  a:hover {
+    color: var(--link-hover);
+    border-bottom-color: var(--link);
+  }
+
+  .now-list {
+    list-style: none;
+  }
+
+  .now-list li {
+    margin-bottom: 18px;
+    color: var(--text-2);
+    line-height: 1.65;
+  }
+
+  .now-list li:last-child {
+    margin-bottom: 0;
+  }
+
+  .now-list .label {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .projects {
+    list-style: none;
+  }
+
+  .projects li {
+    margin-bottom: 18px;
+    line-height: 1.6;
+  }
+
+  .projects li:last-child {
+    margin-bottom: 0;
+  }
+
+  .projects .name {
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .projects .desc {
+    color: var(--text-2);
+  }
+
+  .press {
+    list-style: none;
+  }
+
+  .press li {
+    margin-bottom: 12px;
+    color: var(--text-2);
+    line-height: 1.6;
+  }
+
+  .press li:last-child {
+    margin-bottom: 0;
+  }
+
+  .press .yr {
+    color: var(--text-3);
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", sans-serif;
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+    margin-right: 8px;
+  }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+    color: var(--text-3);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  footer a {
+    color: var(--text-2);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  footer a:hover {
+    color: var(--text);
+    border-bottom-color: var(--text-2);
+  }
+
+  .contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-bottom: 12px;
+  }
+
+  .placeholder {
+    color: var(--text-3);
+    font-style: italic;
+    font-size: 15px;
+  }
+
+  @media (max-width: 540px) {
+    body { padding: 32px 20px 64px; }
+    h1 { font-size: 24px; }
+    .row { grid-template-columns: 56px 1fr; gap: 16px; }
+    .intro p { font-size: 16px; }
+    hr { margin: 36px 0; }
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--bg);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Phillip Guangning An</h1>
+  <div class="intro">
+    <p>I'm a founder, operator, and a current <a href="https://www.schwarzmanscholars.org/" target="_blank" rel="noopener">Schwarzman Scholar</a> at Tsinghua University in Beijing.</p>
+    <p>I'm building <a href="https://skylarq.ai" target="_blank" rel="noopener">Skylarq</a> &mdash; the operating system for outbound, helping founders and operators run high-quality cold outreach at scale. Previously, I co-founded <a href="https://www.ycombinator.com/companies/homebase" target="_blank" rel="noopener">Homebase</a>, the first Vietnamese company backed by Y Combinator (W21), where we raised $30M to make homeownership accessible across Southeast Asia.</p>
+    <p>I also build small things under <a href="https://allstonlabs.com" target="_blank" rel="noopener">Allston Labs</a> &mdash; an iOS notes app called <a href="#projects">Echo</a>, a translation utility called <a href="#projects">Rosetta</a>, a keyboard called <a href="#projects">Nuance</a>, and an AI-native school called <a href="#projects">Arena</a>.</p>
+  </div>
+</header>
+
+<hr>
+
+<section>
+  <h2>Now</h2>
+  <ul class="now-list">
+    <li><span class="label">Building Skylarq</span> &mdash; outbound-as-a-service for founders and operators. We run high-quality outbound campaigns end-to-end so founders can spend their time on the meetings that matter.</li>
+    <li><span class="label">Schwarzman Scholar, Class of 2026</span> &mdash; pursuing a Master of Global Affairs at Tsinghua University in Beijing, focused on leadership and US&ndash;China relations.</li>
+    <li><span class="label">Allston Labs</span> &mdash; my workshop for small consumer products. Echo, Rosetta, Nuance, and Arena are all live or in-progress.</li>
+  </ul>
+</section>
+
+<hr>
+
+<section>
+  <h2>Previously</h2>
+  <div class="row">
+    <span class="year">2019&ndash;23</span>
+    <div class="item">
+      <span class="title"><strong>Homebase</strong> &mdash; Co-founder &amp; COO</span>
+      <span class="sub">First Vietnamese company backed by Y Combinator (W21). Raised $30M from Goodwater Capital, Antler, VinaCapital Ventures, and others. Built a personalized rent-to-own model that made homeownership accessible across Southeast Asia.</span>
+    </div>
+  </div>
+  <div class="row">
+    <span class="year">2018&ndash;19</span>
+    <div class="item">
+      <span class="title"><strong>Goldman Sachs</strong> &mdash; Investment Banking Division</span>
+    </div>
+  </div>
+  <div class="row">
+    <span class="year">2017&ndash;18</span>
+    <div class="item">
+      <span class="title"><strong>McKinsey &amp; Company</strong> &mdash; Consulting</span>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<section>
+  <h2>Education</h2>
+  <div class="row">
+    <span class="year">2026</span>
+    <div class="item">
+      <span class="title"><strong>Schwarzman Scholars</strong>, Tsinghua University</span>
+      <span class="sub">Master of Global Affairs &middot; Class of 2026</span>
+    </div>
+  </div>
+  <div class="row">
+    <span class="year">2024</span>
+    <div class="item">
+      <span class="title"><strong>Harvard Business School</strong></span>
+      <span class="sub">MBA</span>
+    </div>
+  </div>
+  <div class="row">
+    <span class="year">2017</span>
+    <div class="item">
+      <span class="title"><strong>California Institute of Technology</strong></span>
+      <span class="sub">B.S. Computer Science</span>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<section id="projects">
+  <h2>Projects</h2>
+  <ul class="projects">
+    <li>
+      <span class="name">Skylarq</span> &mdash;
+      <span class="desc">the operating system for outbound. End-to-end campaign workflow with personalization, multi-channel orchestration, and a QA layer that catches what generic tools miss.</span>
+    </li>
+    <li>
+      <span class="name">Echo</span> &mdash;
+      <span class="desc">a calm mobile recorder for taking notes by speaking. Inspired by Granola, designed for the iPhone. Live on TestFlight.</span>
+    </li>
+    <li>
+      <span class="name">Rosetta</span> &mdash;
+      <span class="desc">a screenshot translation app for iOS. Translate anything on screen with one tap. On the App Store.</span>
+    </li>
+    <li>
+      <span class="name">Nuance</span> &mdash;
+      <span class="desc">a translation keyboard for iPhone. Italic-serif `&ntilde;`, warm cream + terracotta aesthetic. In active development.</span>
+    </li>
+    <li>
+      <span class="name">Arena</span> &mdash;
+      <span class="desc">an AI-native school, currently at the concept-and-pilot stage. Exploring what apprenticeship-style learning looks like when an AI tutor is part of the cohort.</span>
+    </li>
+  </ul>
+</section>
+
+<hr>
+
+<section>
+  <h2>Talks &amp; Interviews</h2>
+  <div class="row">
+    <span class="year">2021</span>
+    <div class="item">
+      <a href="https://vietcetera.com/en/vietnam-innovators-ep8-recap-phillip-an-is-determined-to-solve-the-home-ownership-challenge" target="_blank" rel="noopener">Vietnam Innovators, Ep. 8 &mdash; Vietcetera</a>
+      <span class="sub">On building Homebase and solving the homeownership challenge in Southeast Asia.</span>
+    </div>
+  </div>
+  <div class="row">
+    <span class="year">2021</span>
+    <div class="item">
+      <a href="https://geeksofthevalley.com/vietnams-future-of-home-ownership-ibuyers-with-homebases-phillip-an/" target="_blank" rel="noopener">Geeks of the Valley, #66</a>
+      <span class="sub">Vietnam's future of homeownership and the iBuyer model.</span>
+    </div>
+  </div>
+  <div class="row">
+    <span class="year">2021</span>
+    <div class="item">
+      <a href="https://www.youtube.com/watch?v=UvDMeL8AAGc" target="_blank" rel="noopener">Revolutionizing Homeownership in SEA</a>
+      <span class="sub">YouTube interview on Homebase's mission and the YC W21 batch.</span>
+    </div>
+  </div>
+  <div class="row">
+    <span class="year">2021</span>
+    <div class="item">
+      <a href="https://www.youtube.com/watch?v=hRfW6RBhMhM" target="_blank" rel="noopener">Unlock the Future of Home Finance with Homebase</a>
+      <span class="sub">YouTube conversation on novel home-financing technology.</span>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<section>
+  <h2>Writings</h2>
+  <p class="placeholder">Coming soon. Working on a few essays from Beijing &mdash; on outbound at scale, on what humanoid data really costs, on what a year at Tsinghua looks like.</p>
+</section>
+
+<hr>
+
+<section>
+  <h2>Selected Press &amp; Recognition</h2>
+  <ul class="press">
+    <li><span class="yr">2025</span> <a href="https://www.gvbfest.com/about-us/organiser-and-jury/phillip-an" target="_blank" rel="noopener">Global Vietnam Business Festival</a> &mdash; organiser &amp; jury</li>
+    <li><span class="yr">2024</span> <a href="https://www.asean-japan-future-leaders-summit.com/member/phillip-an" target="_blank" rel="noopener">ASEAN&ndash;Japan Future Leaders Summit</a> &mdash; member</li>
+    <li><span class="yr">2023</span> <a href="https://www.tatlerasia.com/people/phillip-an" target="_blank" rel="noopener">Tatler Asia Gen.T</a> &mdash; Leaders of Tomorrow shaping Asia's future</li>
+    <li><span class="yr">2022</span> Forbes 30 Under 30 Asia &mdash; Consumer Technology</li>
+    <li><span class="yr">2021</span> <a href="https://techcrunch.com/2021/11/14/homebase-raises-30m-to-help-more-people-in-southeast-asia-become-property-owners/" target="_blank" rel="noopener">TechCrunch</a> &mdash; Homebase raises $30M for SEA homeownership</li>
+    <li><span class="yr">2021</span> <a href="https://techcrunch.com/2021/03/26/yc-backed-homebase-is-an-alternative-to-traditional-mortgages-for-home-buyers-in-vietnam/" target="_blank" rel="noopener">TechCrunch</a> &mdash; YC-backed Homebase is an alternative to traditional mortgages</li>
+  </ul>
+</section>
+
+<footer>
+  <div class="contact">
+    <a href="mailto:phillip@phillipan.com">phillip@phillipan.com</a>
+    <a href="https://www.linkedin.com/in/phillipan/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/phillipan14" target="_blank" rel="noopener">GitHub</a>
+  </div>
+  <div>Beijing &middot; Boston &middot; Saigon</div>
+</footer>
+
+</div>
+</body>
+</html>
