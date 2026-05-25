@@ -234,7 +234,7 @@ a:hover {
 }
 
 .now-list li {
-  margin-bottom: 18px;
+  margin-bottom: 24px;
   color: var(--text-2);
   line-height: 1.65;
 }
