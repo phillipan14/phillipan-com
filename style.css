@@ -4,8 +4,9 @@
   --text-2: #4a463f;
   --text-3: #7a7468;
   --rule: #d8d2c1;
-  --link: #5a3a1f;
+  --link: #8a3a1c;
   --link-hover: #1c1a17;
+  --link-underline: rgba(138, 58, 28, 0.35);
   --accent: #8a3a1c;
 }
 
@@ -16,8 +17,9 @@
     --text-2: #b8b1a0;
     --text-3: #807968;
     --rule: #2c2920;
-    --link: #d4a86a;
-    --link-hover: #e8e1d0;
+    --link: #e6b878;
+    --link-hover: #ffffff;
+    --link-underline: rgba(230, 184, 120, 0.4);
     --accent: #d4a86a;
   }
 }
@@ -225,6 +227,28 @@ a {
 
 a:hover {
   color: var(--link-hover);
+  border-bottom-color: var(--link);
+}
+
+/* Body-text links (inside paragraphs) get a permanent subtle underline */
+.intro p a,
+.now-list li a,
+.projects .desc a,
+article .post-body p a,
+article .post-body li a,
+.post-list .excerpt a,
+.page-header p a {
+  border-bottom: 1px solid var(--link-underline);
+  font-weight: 500;
+}
+
+.intro p a:hover,
+.now-list li a:hover,
+.projects .desc a:hover,
+article .post-body p a:hover,
+article .post-body li a:hover,
+.post-list .excerpt a:hover,
+.page-header p a:hover {
   border-bottom-color: var(--link);
 }
 
