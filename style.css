@@ -1,26 +1,27 @@
 :root {
-  --bg: #f7f4ec;
-  --text: #1c1a17;
-  --text-2: #4a463f;
-  --text-3: #7a7468;
-  --rule: #d8d2c1;
-  --link: #8a3a1c;
-  --link-hover: #1c1a17;
-  --link-underline: rgba(138, 58, 28, 0.35);
-  --accent: #8a3a1c;
+  /* Arena School palette — unified across arenaschool.org · isb.arenaschool.org · phillipan.com */
+  --bg: #F4EFE3;
+  --text: #1A1A1D;
+  --text-2: #52525B;
+  --text-3: #88857B;
+  --rule: #D6CFBC;
+  --link: #C45D35;             /* Arena saffron */
+  --link-hover: #1A1A1D;
+  --link-underline: rgba(196, 93, 53, 0.35);
+  --accent: #C45D35;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #14130f;
-    --text: #e8e1d0;
-    --text-2: #b8b1a0;
-    --text-3: #807968;
-    --rule: #2c2920;
-    --link: #e6b878;
-    --link-hover: #ffffff;
-    --link-underline: rgba(230, 184, 120, 0.4);
-    --accent: #d4a86a;
+    --bg: #0F0E0C;
+    --text: #F0EEE8;
+    --text-2: #A6A39A;
+    --text-3: #6C6A62;
+    --rule: #2A2620;
+    --link: #E89568;           /* saffron lifted for dark-mode contrast */
+    --link-hover: #FFFFFF;
+    --link-underline: rgba(232, 149, 104, 0.4);
+    --accent: #E89568;
   }
 }
 
@@ -29,7 +30,7 @@
 html { font-size: 17px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
 body {
-  font-family: "Charter", "Iowan Old Style", "Iowan", "Palatino Linotype", "Palatino", "Georgia", "Times New Roman", serif;
+  font-family: "Newsreader", "Charter", "Iowan Old Style", "Palatino", "Georgia", serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.65;
@@ -55,7 +56,7 @@ nav.top {
 }
 
 nav.top .brand {
-  font-family: "Charter", "Iowan Old Style", "Palatino", "Georgia", serif;
+  font-family: "Newsreader", "Charter", "Iowan Old Style", "Palatino", "Georgia", serif;
   font-size: 17px;
   font-weight: 600;
   letter-spacing: -0.005em;
@@ -425,7 +426,7 @@ article .post-body em {
 article .post-body h2 {
   font-size: 22px;
   font-weight: 700;
-  font-family: "Charter", "Iowan Old Style", "Palatino", "Georgia", serif;
+  font-family: "Newsreader", "Charter", "Iowan Old Style", "Palatino", "Georgia", serif;
   text-transform: none;
   letter-spacing: -0.01em;
   color: var(--text);
