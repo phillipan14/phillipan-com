@@ -1,24 +1,24 @@
 :root {
-  /* Arena School palette — unified across arenaschool.org · isb.arenaschool.org · phillipan.com */
-  --bg: #F4EFE3;
-  --text: #1A1A1D;
-  --text-2: #52525B;
-  --text-3: #88857B;
-  --rule: #D6CFBC;
-  --link: #C45D35;             /* Arena saffron */
-  --link-hover: #1A1A1D;
-  --link-underline: rgba(196, 93, 53, 0.35);
+  /* Clean editorial — white background, charcoal text, restrained accent */
+  --bg: #FFFFFF;
+  --text: #0F0F12;
+  --text-2: #5A5C64;
+  --text-3: #8E9099;
+  --rule: #E5E5E8;
+  --link: #C45D35;             /* saffron accent (subtle, only on links) */
+  --link-hover: #0F0F12;
+  --link-underline: rgba(196, 93, 53, 0.32);
   --accent: #C45D35;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0F0E0C;
-    --text: #F0EEE8;
-    --text-2: #A6A39A;
-    --text-3: #6C6A62;
-    --rule: #2A2620;
-    --link: #E89568;           /* saffron lifted for dark-mode contrast */
+    --bg: #0F0F12;
+    --text: #F2F2F4;
+    --text-2: #9DA0A8;
+    --text-3: #6A6D75;
+    --rule: #2A2B2F;
+    --link: #E89568;
     --link-hover: #FFFFFF;
     --link-underline: rgba(232, 149, 104, 0.4);
     --accent: #E89568;
@@ -27,15 +27,15 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { font-size: 17px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+html { font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
 body {
-  font-family: "Newsreader", "Charter", "Iowan Old Style", "Palatino", "Georgia", serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", system-ui, sans-serif;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.65;
-  font-feature-settings: "kern", "liga", "onum";
-  padding: 32px 24px 96px;
+  line-height: 1.6;
+  font-feature-settings: "kern", "liga", "ss01";
+  padding: 40px 28px 120px;
 }
 
 .wrap {
@@ -56,10 +56,10 @@ nav.top {
 }
 
 nav.top .brand {
-  font-family: "Newsreader", "Charter", "Iowan Old Style", "Palatino", "Georgia", serif;
-  font-size: 17px;
+  font-family: inherit;
+  font-size: 16px;
   font-weight: 600;
-  letter-spacing: -0.005em;
+  letter-spacing: -0.01em;
   color: var(--text);
 }
 
@@ -128,10 +128,18 @@ h3 {
 
 /* === Intro paragraph === */
 .intro p {
-  color: var(--text-2);
-  font-size: 17px;
-  line-height: 1.7;
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.65;
   margin-bottom: 14px;
+}
+.intro p:first-of-type {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.45;
+  letter-spacing: -0.005em;
+  margin-bottom: 20px;
 }
 
 .intro p:last-child {
