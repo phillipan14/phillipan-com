@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fellowships — Phillip An</title>
+<meta name="description" content="A comprehensive directory of 150+ fellowships, scholarships, prizes, and leadership programs — categorized, filterable, and sourced.">
+<meta name="author" content="Phillip An">
+<meta property="og:title" content="Fellowships Directory — Phillip An">
+<meta property="og:description" content="A categorized, filterable directory of 150+ fellowships across foreign policy, tech, US–China, transatlantic, leadership, research, climate, social impact, and graduate lanes.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://phillipan.com/fellowships/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23F4EFE3'/%3E%3Ctext x='50' y='76' font-size='80' font-family='Georgia,serif' font-weight='700' fill='%23C45D35' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/style.css">
+<style>
+  /* Wider wrap for table */
+  body { padding: 40px 28px 120px; }
+  .wrap.wide { max-width: 1100px; }
+
+  .page-header .stats {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+    font-size: 13px;
+    color: var(--text-3);
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+  }
+  .page-header .stats strong { color: var(--text); font-variant-numeric: tabular-nums; }
+
+  /* Search + filter bar */
+  .toolbar {
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    padding: 14px 0 12px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--rule);
+    z-index: 10;
+  }
+  .search-row { margin-bottom: 10px; }
+  .search-input {
+    width: 100%;
+    padding: 9px 14px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--text);
+    background: transparent;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    transition: border-color 0.15s ease;
+  }
+  .search-input:focus { outline: none; border-color: var(--text-3); }
+  .search-input::placeholder { color: var(--text-3); }
+
+  .filter-group {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+  .filter-group:last-child { margin-bottom: 0; }
+  .filter-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+    margin-right: 8px;
+    min-width: 50px;
+  }
+  .chip {
+    font-size: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+    padding: 3px 9px;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    color: var(--text-2);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.12s ease;
+    line-height: 1.4;
+  }
+  .chip:hover { border-color: var(--text-3); color: var(--text); }
+  .chip.active { background: var(--text); color: var(--bg); border-color: var(--text); }
+
+  .results-meta {
+    font-size: 12px;
+    color: var(--text-3);
+    margin-bottom: 16px;
+    font-family: -apple-system, "Inter", sans-serif;
+  }
+  .results-meta .count { color: var(--text); font-weight: 600; font-variant-numeric: tabular-nums; }
+
+  /* TOC */
+  .toc {
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 16px 22px;
+    margin-bottom: 32px;
+    font-size: 13px;
+  }
+  .toc-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-3);
+    margin-bottom: 10px;
+  }
+  .toc ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    columns: 2;
+    column-gap: 24px;
+  }
+  .toc ol li { margin-bottom: 4px; break-inside: avoid; }
+  .toc ol li a { color: var(--text-2); border-bottom: none; }
+  .toc ol li a:hover { color: var(--link); }
+  .toc-num {
+    color: var(--text-3);
+    font-variant-numeric: tabular-nums;
+    margin-right: 6px;
+    font-family: -apple-system, "Inter", sans-serif;
+  }
+  @media (max-width: 640px) { .toc ol { columns: 1; } }
+
+  /* Category section */
+  section.cat { margin-bottom: 48px; scroll-margin-top: 220px; }
+  section.cat > .cat-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 6px;
+    padding-bottom: 6px;
+  }
+  section.cat > .cat-head .cat-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-3);
+    font-variant-numeric: tabular-nums;
+    font-family: -apple-system, "Inter", sans-serif;
+    letter-spacing: 0.1em;
+  }
+  section.cat > .cat-head h2 {
+    font-family: "Newsreader", "Charter", "Iowan Old Style", "Palatino", "Georgia", serif;
+    text-transform: none;
+    letter-spacing: -0.01em;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0;
+  }
+  section.cat .cat-blurb {
+    color: var(--text-2);
+    font-size: 14px;
+    line-height: 1.55;
+    margin-bottom: 18px;
+    max-width: 720px;
+  }
+
+  /* Table */
+  table.fellowships {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+  table.fellowships thead th {
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+    font-family: -apple-system, "Inter", sans-serif;
+    border-bottom: 1px solid var(--rule);
+    padding: 8px 10px;
+  }
+  table.fellowships tbody tr.fship {
+    border-bottom: 1px solid var(--rule);
+  }
+  table.fellowships tbody tr.fship.hidden { display: none; }
+  table.fellowships tbody tr.fship:hover { background: color-mix(in srgb, var(--rule) 40%, transparent); }
+  table.fellowships tbody td {
+    padding: 12px 10px;
+    vertical-align: top;
+  }
+  td.col-name {
+    width: 22%;
+    min-width: 180px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  td.col-name a {
+    color: var(--text);
+    border-bottom: 1px solid var(--link-underline);
+  }
+  td.col-name a:hover {
+    color: var(--link);
+    border-bottom-color: var(--link);
+  }
+  td.col-desc {
+    width: 42%;
+    color: var(--text-2);
+    font-size: 13px;
+  }
+  td.col-who {
+    width: 18%;
+    color: var(--text-3);
+    font-size: 12px;
+    font-family: -apple-system, "Inter", sans-serif;
+  }
+  td.col-notes {
+    width: 18%;
+    color: var(--text-3);
+    font-size: 12px;
+    font-family: -apple-system, "Inter", sans-serif;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-3);
+    font-style: italic;
+    display: none;
+  }
+  .empty-state.show { display: block; }
+
+  /* ===== Mobile: stack table into cards ===== */
+  @media (max-width: 760px) {
+    body { padding: 20px 16px 60px; }
+    .wrap.wide { max-width: 100%; }
+
+    /* Header */
+    .page-header { margin-bottom: 28px; }
+    .page-header h1 { font-size: 22px; }
+    .page-header p { font-size: 15px; }
+    .page-header .stats { gap: 14px; font-size: 12px; }
+
+    /* TOC: single column */
+    .toc { padding: 14px 18px; margin-bottom: 24px; }
+    .toc ol { columns: 1; }
+
+    /* Toolbar more compact */
+    .toolbar {
+      padding: 10px 0 8px;
+      margin-bottom: 16px;
+      margin-left: -16px;
+      margin-right: -16px;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .search-row { margin-bottom: 8px; }
+    .search-input { font-size: 14px; padding: 10px 12px; }
+    .filter-group {
+      margin-bottom: 4px;
+      gap: 5px;
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+    }
+    .filter-group::-webkit-scrollbar { display: none; }
+    .filter-label { min-width: auto; font-size: 10px; flex-shrink: 0; }
+    .chip { flex-shrink: 0; padding: 5px 10px; font-size: 12px; }
+
+    /* Category headings */
+    section.cat { margin-bottom: 36px; scroll-margin-top: 160px; }
+    section.cat > .cat-head { margin-bottom: 4px; }
+    section.cat > .cat-head h2 { font-size: 18px; line-height: 1.25; }
+    section.cat .cat-blurb { font-size: 13px; margin-bottom: 14px; }
+
+    /* Table → stacked cards */
+    table.fellowships,
+    table.fellowships thead,
+    table.fellowships tbody,
+    table.fellowships tr,
+    table.fellowships td { display: block; }
+    table.fellowships thead { display: none; }
+    table.fellowships tr.fship {
+      padding: 14px 0;
+      border-top: 1px solid var(--rule);
+      border-bottom: none;
+    }
+    table.fellowships tr.fship:hover { background: transparent; }
+    table.fellowships tbody td {
+      padding: 0;
+      width: auto !important;
+      min-width: 0 !important;
+    }
+    td.col-name {
+      font-size: 16px;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+    td.col-name a { font-weight: 600; }
+    td.col-desc {
+      font-size: 14px;
+      margin-bottom: 8px;
+      line-height: 1.5;
+      color: var(--text-2);
+    }
+    td.col-who, td.col-notes {
+      display: inline;
+      font-size: 11.5px;
+      line-height: 1.5;
+    }
+    td.col-notes:before {
+      content: "·";
+      margin: 0 6px;
+      color: var(--text-3);
+    }
+  }
+
+  @media (max-width: 420px) {
+    body { padding: 16px 14px 60px; }
+    .page-header h1 { font-size: 20px; }
+    .page-header .stats { font-size: 11px; gap: 10px; }
+    section.cat > .cat-head h2 { font-size: 17px; }
+    td.col-name { font-size: 15px; }
+    td.col-desc { font-size: 13.5px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap wide">
+
+<nav class="top">
+  <div class="brand"><a href="/">Phillip An</a></div>
+  <ul>
+    <li><a href="/writings/">Writings</a></li>
+    <li><a href="/talks/">Talks</a></li>
+    <li><a href="/fellowships/" class="current">Fellowships</a></li>
+    <li><a href="/contact/">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="kicker">Fellowships</div>
+  <h1>A directory of fellowships</h1>
+  <p>A categorized, filterable, searchable directory of fellowships, scholarships, leadership programs, and recognition lists across foreign policy, tech, US&ndash;China, transatlantic, leadership, research, climate, social impact, and graduate lanes. Built as a public resource for anyone building their own pipeline.</p>
+  <p style="margin-top:14px;color:var(--text-3);font-size:14px">Last updated June 2026. Deadlines drift; confirm on the program page before applying. Got one I missed? <a href="/contact/">Tell me</a>.</p>
+  <div class="stats">
+    <span><strong>160+</strong> programs</span>
+    <span><strong>10</strong> categories</span>
+    <span><strong>50+</strong> countries</span>
+  </div>
+</div>
+
+<div class="toc">
+  <div class="toc-label">Jump to category</div>
+  <ol>
+    <li><span class="toc-num">01</span><a href="#foreign-policy">Foreign Policy &amp; National Security</a></li>
+    <li><span class="toc-num">02</span><a href="#us-china">US&ndash;China, Asia &amp; Indo-Pacific</a></li>
+    <li><span class="toc-num">03</span><a href="#transatlantic">Transatlantic, Europe &amp; Germany</a></li>
+    <li><span class="toc-num">04</span><a href="#tech-ai">Tech, AI &amp; Innovation Policy</a></li>
+    <li><span class="toc-num">05</span><a href="#leadership">Leadership &amp; Entrepreneurship</a></li>
+    <li><span class="toc-num">06</span><a href="#research">Research, Writing &amp; Public Intellectual</a></li>
+    <li><span class="toc-num">07</span><a href="#social-impact">Social Impact &amp; Development</a></li>
+    <li><span class="toc-num">08</span><a href="#climate">Climate &amp; Environment</a></li>
+    <li><span class="toc-num">09</span><a href="#graduate">Major Graduate Scholarships</a></li>
+    <li><span class="toc-num">10</span><a href="#recognition">Recognition Lists &amp; Awards</a></li>
+  </ol>
+</div>
+
+<div class="toolbar">
+  <div class="search-row">
+    <input type="text" class="search-input" placeholder="Search programs..." id="search">
+  </div>
+  <div class="filter-group">
+    <span class="filter-label">Region</span>
+    <button class="chip active" data-filter="region" data-value="all">All</button>
+    <button class="chip" data-filter="region" data-value="us">US</button>
+    <button class="chip" data-filter="region" data-value="europe">Europe</button>
+    <button class="chip" data-filter="region" data-value="asia">Asia</button>
+    <button class="chip" data-filter="region" data-value="africa">Africa</button>
+    <button class="chip" data-filter="region" data-value="global">Global</button>
+  </div>
+  <div class="filter-group">
+    <span class="filter-label">Stage</span>
+    <button class="chip active" data-filter="stage" data-value="all">All</button>
+    <button class="chip" data-filter="stage" data-value="undergrad">Undergrad</button>
+    <button class="chip" data-filter="stage" data-value="early">Early</button>
+    <button class="chip" data-filter="stage" data-value="mid">Mid</button>
+    <button class="chip" data-filter="stage" data-value="senior">Senior</button>
+  </div>
+  <div class="filter-group">
+    <span class="filter-label">Format</span>
+    <button class="chip active" data-filter="format" data-value="all">All</button>
+    <button class="chip" data-filter="format" data-value="residential">Residential</button>
+    <button class="chip" data-filter="format" data-value="cohort">Cohort</button>
+    <button class="chip" data-filter="format" data-value="events">Events</button>
+    <button class="chip" data-filter="format" data-value="recognition">Recognition</button>
+    <button class="chip" data-filter="format" data-value="degree">Degree</button>
+  </div>
+</div>
+
+<div class="results-meta"><span class="count">0</span> programs visible</div>
+<div class="empty-state">No programs match those filters. Try widening one.</div>
+
+<!-- 01 — FOREIGN POLICY -->
+<section class="cat" id="foreign-policy">
+  <div class="cat-head"><span class="cat-num">01</span><h2>Foreign Policy &amp; National Security</h2></div>
+  <p class="cat-blurb">Membership networks, mid-career fellowships, think-tank residencies, and Hill placements in the US and international FP and national security world.</p>
+  <table class="fellowships">
+    <thead><tr><th>Program</th><th>What it is</th><th>Who</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.cfr.org/membership/term-member-program" target="_blank" rel="noopener">CFR Term Member</a></td><td class="col-desc">Five-year membership in CFR with off-the-record briefings, member-only events, and Foreign Affairs.</td><td class="col-who">Ages 30–36 · US citizen · CFR member nomination + 2–3 seconders</td><td class="col-notes">$870–$3,610/yr dues</td></tr>
+      <tr class="fship" data-region="us" data-stage="early" data-format="cohort"><td class="col-name"><a href="https://www.aspensecurityforum.org/asg-rising-leaders/" target="_blank" rel="noopener">ASG Rising Leaders</a></td><td class="col-desc">Aspen Strategy Group year-long program for 30 young national security professionals. Roundtables, mentorship, published policy paper.</td><td class="col-who">5–10 yrs exp · US-based</td><td class="col-notes">Funded · DC + Aspen</td></tr>
+      <tr class="fship" data-region="us" data-stage="early" data-format="residential"><td class="col-name"><a href="https://www.aspensecurityforum.org/aspen-strategy-group/scowcroft-nye-fellowship/" target="_blank" rel="noopener">Scowcroft–Nye Fellow</a></td><td class="col-desc">Six-month paid fellowship at Aspen Strategy Group for recent grads entering US foreign policy.</td><td class="col-who">Recent grads</td><td class="col-notes">$25/hr · DC hybrid</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.trumanproject.org/membership/applying-for-membership" target="_blank" rel="noopener">Truman National Security Project</a></td><td class="col-desc">National security network for progressive policy experts, political partners, and veterans across three tracks.</td><td class="col-who">Mid-career US</td><td class="col-notes">Membership-based</td></tr>
+      <tr class="fship" data-region="us" data-stage="early" data-format="residential"><td class="col-name"><a href="https://techcongress.io/apply" target="_blank" rel="noopener">TechCongress</a></td><td class="col-desc">Congressional Innovation Fellowship embedding technologists in Congressional offices and committees.</td><td class="col-who">2–6+ yrs tech · US citizen</td><td class="col-notes">DC full-time</td></tr>
+      <tr class="fship" data-region="us" data-stage="early" data-format="residential"><td class="col-name"><a href="https://horizonpublicservice.org/programs/become-a-fellow/" target="_blank" rel="noopener">Horizon Institute Fellow</a></td><td class="col-desc">Places AI, biotech, emerging tech experts in federal agencies, Congress, and think tanks.</td><td class="col-who">AI/bio background</td><td class="col-notes">$75–113K · DC · 1–2 yrs</td></tr>
+      <tr class="fship" data-region="us" data-stage="early" data-format="residential"><td class="col-name"><a href="https://apply.pickeringfellowship.org/" target="_blank" rel="noopener">Pickering Foreign Affairs</a></td><td class="col-desc">Foreign Service entry pathway: graduate school funding + summer internships + State Dept appointment.</td><td class="col-who">US citizen · Grad applicants</td><td class="col-notes">Career FS commitment</td></tr>
+      <tr class="fship" data-region="us" data-stage="early" data-format="residential"><td class="col-name"><a href="https://rangelprogram.org/" target="_blank" rel="noopener">Rangel International Affairs</a></td><td class="col-desc">Sister to Pickering; recruits diverse candidates into Foreign Service via two-year graduate program.</td><td class="col-who">US citizen · Grad applicants</td><td class="col-notes">FS commitment</td></tr>
+      <tr class="fship" data-region="us" data-stage="early" data-format="residential"><td class="col-name"><a href="https://scoville.org/" target="_blank" rel="noopener">Scoville Peace Fellowship</a></td><td class="col-desc">Entry-level 6–9 month placement at DC peace/security NGOs. Salary provided.</td><td class="col-who">Recent grads</td><td class="col-notes">DC · Twice-yearly</td></tr>
+      <tr class="fship" data-region="us" data-stage="early" data-format="cohort"><td class="col-name"><a href="https://www.cnas.org/people" target="_blank" rel="noopener">CNAS Next Gen NatSec</a></td><td class="col-desc">Center for a New American Security think tank affiliation for emerging national security thinkers.</td><td class="col-who">Early/mid-career</td><td class="col-notes">DC-based</td></tr>
+      <tr class="fship" data-region="us" data-stage="early" data-format="residential"><td class="col-name"><a href="https://www.nationalacademies.org/our-work/mirzayan-science-and-technology-policy-graduate-fellowship-program" target="_blank" rel="noopener">Mirzayan S&amp;T Policy Fellow</a></td><td class="col-desc">National Academies 12-week DC immersion for grad students interested in science policy.</td><td class="col-who">Grad / recent PhD</td><td class="col-notes">DC · 12 weeks</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="residential"><td class="col-name"><a href="https://mansfieldfellows.org/" target="_blank" rel="noopener">Mansfield Fellowship</a></td><td class="col-desc">Places US federal employees in Japanese government ministries for one year.</td><td class="col-who">US fed gov only · 2+ yrs gov</td><td class="col-notes">Japan placement</td></tr>
+      <tr class="fship" data-region="us" data-stage="early" data-format="cohort"><td class="col-name"><a href="https://www.fp4america.org/nextgen-initiative/" target="_blank" rel="noopener">FP4A NextGen</a></td><td class="col-desc">Foreign Policy for America&rsquo;s network of diverse young US foreign policy leaders.</td><td class="col-who">Ages 22–37 · US-focused</td><td class="col-notes">DC-centric</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="residential"><td class="col-name"><a href="https://www.belfercenter.org/fellowships" target="_blank" rel="noopener">Belfer Center Fellowships</a></td><td class="col-desc">Multiple residential fellowships at Harvard&rsquo;s premier security and tech-policy center. ISP, TAPP, Black Family, Cyber, etc.</td><td class="col-who">PhD or equivalent</td><td class="col-notes">Harvard residential</td></tr>
+      <tr class="fship" data-region="us" data-stage="undergrad" data-format="events"><td class="col-name"><a href="https://www.salzburgglobal.org/multi-year-series/cutler-fellows" target="_blank" rel="noopener">Salzburg Cutler Fellows</a></td><td class="col-desc">Network of US law students focused on international law. February DC convening + summer Salzburg.</td><td class="col-who">2L / 3L / LLM only</td><td class="col-notes">Free · DC + Salzburg</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="residential"><td class="col-name"><a href="https://www.wilsoncenter.org/fellowship-application-guidelines" target="_blank" rel="noopener">Wilson Center Fellowship</a></td><td class="col-desc">Nine-month DC residency for scholars producing policy-relevant books and research.</td><td class="col-who">PhD</td><td class="col-notes">Funded · DC 9 mo</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="residential"><td class="col-name"><a href="https://www.rand.org/about/edu_op/fellowships.html" target="_blank" rel="noopener">RAND Fellowships</a></td><td class="col-desc">Multiple research fellowships at RAND across defense, AI, health, and policy.</td><td class="col-who">Various</td><td class="col-notes">DC / Santa Monica</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.hertogfoundation.org/" target="_blank" rel="noopener">Hertog Foundation</a></td><td class="col-desc">Intensive summer political studies and war studies programs in NYC and DC.</td><td class="col-who">Grad / early-career</td><td class="col-notes">Summer · NYC + DC</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://reaganfoundation.org/scholarships-programs/national-leadership/" target="_blank" rel="noopener">Reagan Institute Scholars</a></td><td class="col-desc">Conservative-leaning leadership development for emerging policy leaders. Annual cohort.</td><td class="col-who">Early/mid US</td><td class="col-notes">Funded · DC events</td></tr>
+      <tr class="fship" data-region="global" data-stage="mid" data-format="events"><td class="col-name"><a href="https://halifaxtheforum.org/" target="_blank" rel="noopener">Halifax International Security Forum</a></td><td class="col-desc">Annual gathering of democratic security leaders. Peace with Women fellowship for female military officers.</td><td class="col-who">Military / policy</td><td class="col-notes">By nomination</td></tr>
+      <tr class="fship" data-region="europe" data-stage="early" data-format="events"><td class="col-name"><a href="https://securityconference.org/en/about/munich-young-leaders/" target="_blank" rel="noopener">Munich Young Leaders</a></td><td class="col-desc">Annual BAKS program convening 25 young security leaders around the Munich Security Conference.</td><td class="col-who">Under 40</td><td class="col-notes">By nomination</td></tr>
+      <tr class="fship" data-region="europe" data-stage="senior" data-format="cohort"><td class="col-name"><a href="https://www.chathamhouse.org/about-us/our-people/fellows" target="_blank" rel="noopener">Chatham House Fellows</a></td><td class="col-desc">Affiliations and residencies at the UK&rsquo;s premier international affairs institute.</td><td class="col-who">Mid-senior</td><td class="col-notes">London · Various</td></tr>
+      <tr class="fship" data-region="europe" data-stage="senior" data-format="residential"><td class="col-name"><a href="https://www.iiss.org/" target="_blank" rel="noopener">IISS Fellows</a></td><td class="col-desc">International Institute for Strategic Studies fellowships in London on defense and security.</td><td class="col-who">Mid-senior</td><td class="col-notes">London · Funded</td></tr>
+      <tr class="fship" data-region="europe" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://ecfr.eu/" target="_blank" rel="noopener">ECFR</a></td><td class="col-desc">European Council on Foreign Relations: pan-European policy fellowships across multiple capitals.</td><td class="col-who">European-focused</td><td class="col-notes">Multiple offices</td></tr>
+      <tr class="fship" data-region="europe" data-stage="senior" data-format="residential"><td class="col-name"><a href="https://www.swp-berlin.org/en/" target="_blank" rel="noopener">SWP Berlin</a></td><td class="col-desc">Stiftung Wissenschaft und Politik: Germany&rsquo;s premier think tank advising the Bundestag.</td><td class="col-who">Senior researchers</td><td class="col-notes">Berlin</td></tr>
+      <tr class="fship" data-region="europe" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.europeanleadershipnetwork.org/" target="_blank" rel="noopener">European Leadership Network</a></td><td class="col-desc">Network of senior European political, military, and diplomatic figures focused on security.</td><td class="col-who">Senior European</td><td class="col-notes">Membership-based</td></tr>
+      <tr class="fship" data-region="europe" data-stage="senior" data-format="cohort"><td class="col-name"><a href="https://www.ispionline.it/en" target="_blank" rel="noopener">ISPI (Italy)</a></td><td class="col-desc">Italy&rsquo;s leading foreign policy think tank with research fellowships and policy programs.</td><td class="col-who">Mid-senior</td><td class="col-notes">Milan + Rome</td></tr>
+      <tr class="fship" data-region="global" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.aspi.org.au/" target="_blank" rel="noopener">ASPI (Australia)</a></td><td class="col-desc">Australia&rsquo;s leading Indo-Pacific security think tank.</td><td class="col-who">Mid-senior</td><td class="col-notes">Canberra</td></tr>
+      <tr class="fship" data-region="europe" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.ifri.org/en" target="_blank" rel="noopener">IFRI (France)</a></td><td class="col-desc">France&rsquo;s leading independent research institute on international affairs.</td><td class="col-who">Researchers</td><td class="col-notes">Paris</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 02 — US-CHINA -->
+<section class="cat" id="us-china">
+  <div class="cat-head"><span class="cat-num">02</span><h2>US&ndash;China, Asia &amp; Indo-Pacific</h2></div>
+  <p class="cat-blurb">The Asia-Pacific lane: US&ndash;China relations, Indo-Pacific security, ASEAN, US&ndash;Japan, US&ndash;Korea, and Taiwan. Academic, leadership, language, and policy programs.</p>
+  <table class="fellowships">
+    <thead><tr><th>Program</th><th>What it is</th><th>Who</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr class="fship" data-region="global" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://isf.schmidtfutures.com/fellowship/" target="_blank" rel="noopener">International Strategy Forum (SCSP)</a></td><td class="col-desc">Schmidt+SCSP 30-month program convening 100+ early- to mid-career foreign policy leaders globally. Chaired by Fareed Zakaria and Jared Cohen.</td><td class="col-who">Early/mid-career</td><td class="col-notes">Funded · Global cohorts</td></tr>
+      <tr class="fship" data-region="global" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://ieas.berkeley.edu/taiwan" target="_blank" rel="noopener">UC Berkeley US-Taiwan-EU NextGen</a></td><td class="col-desc">Three-year program for ten specialists on US–Taiwan–Europe relations. Taipei + Europe + DC meetings.</td><td class="col-who">US/EU/UK citizens · Mid-career</td><td class="col-notes">3-yr cohort</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.ncuscr.org/program/public-intellectuals-program/" target="_blank" rel="noopener">NCUSCR Public Intellectuals (PIP)</a></td><td class="col-desc">Two-year program for 20 next-generation China specialists. DC + West Coast seminars + Asia study tour.</td><td class="col-who">China-focused academics/policy</td><td class="col-notes">Free · 2 yrs</td></tr>
+      <tr class="fship" data-region="us" data-stage="early" data-format="cohort"><td class="col-name"><a href="https://www.ncuscr.org/program/clfp/" target="_blank" rel="noopener">NCUSCR Chinese Language Fellowship</a></td><td class="col-desc">Funding for intensive Chinese language study in Taiwan for US graduate students focused on China policy.</td><td class="col-who">US grad students</td><td class="col-notes">Funded · Taiwan</td></tr>
+      <tr class="fship" data-region="asia" data-stage="early" data-format="events"><td class="col-name"><a href="https://pacforum.org/young-leaders-faq/" target="_blank" rel="noopener">Pacific Forum Young Leaders</a></td><td class="col-desc">Hawaii-based Indo-Pacific security network. Workshops, conferences, and publications.</td><td class="col-who">Ages 25–35 · MA/PhD or BA+exp</td><td class="col-notes">Funded</td></tr>
+      <tr class="fship" data-region="asia" data-stage="early" data-format="cohort"><td class="col-name"><a href="https://pacforum.org/fellowships/wsd-handa-fellowship/" target="_blank" rel="noopener">WSD–Handa Fellowship</a></td><td class="col-desc">Pacific Forum resident or non-resident fellowships for young scholars on East Asian security.</td><td class="col-who">NA / EU / SE Asia</td><td class="col-notes">6–12 mo</td></tr>
+      <tr class="fship" data-region="global" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://asiasociety.org/asia-21-next-generation-fellows/" target="_blank" rel="noopener">Asia Society Asia 21</a></td><td class="col-desc">Year-long Asia Society program for 25–30 emerging Asia-focused leaders. 1,000+ alumni network.</td><td class="col-who">5–10 yrs exp · Asia focus</td><td class="col-notes">Nomination only</td></tr>
+      <tr class="fship" data-region="asia" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://asiafoundation.org/programs/education-and-leadership/leadex/asia-foundation-development-fellows/" target="_blank" rel="noopener">Asia Foundation Dev Fellows</a></td><td class="col-desc">Year-long leadership development for under-40 leaders across Asia-Pacific. Korea + US trips.</td><td class="col-who">Under 40 · Asia-Pacific</td><td class="col-notes">$2.5K stipend</td></tr>
+      <tr class="fship" data-region="asia" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.obama.org/programs/leaders/asia-pacific/" target="_blank" rel="noopener">Obama Leaders Asia-Pacific</a></td><td class="col-desc">Six-month leadership program for 100 emerging leaders across Asia-Pacific.</td><td class="col-who">Ages 24–45 · 5-yr AP residence</td><td class="col-notes">Free</td></tr>
+      <tr class="fship" data-region="asia" data-stage="early" data-format="residential"><td class="col-name"><a href="https://www.ysealipfp.org/" target="_blank" rel="noopener">YSEALI Professional Fellows</a></td><td class="col-desc">US State Department exchange placing emerging SE Asian leaders at US organizations for 5–6 weeks.</td><td class="col-who">25–35 SE Asian citizens</td><td class="col-notes">Funded · 11 nations</td></tr>
+      <tr class="fship" data-region="asia" data-stage="undergrad" data-format="residential"><td class="col-name"><a href="https://asean.usmission.gov/ysealiafp/" target="_blank" rel="noopener">YSEALI Academic Fellowship</a></td><td class="col-desc">Five-week US academic institute for SE Asian undergraduate / early-career leaders.</td><td class="col-who">Undergrad SE Asian</td><td class="col-notes">Funded</td></tr>
+      <tr class="fship" data-region="global" data-stage="early" data-format="degree"><td class="col-name"><a href="https://www.quadfellowship.org/" target="_blank" rel="noopener">Quad Fellowship</a></td><td class="col-desc">US/Australia/India/Japan + ASEAN STEM grad fellowship at US universities. $40K one-time award.</td><td class="col-who">Quad+ASEAN citizens · STEM</td><td class="col-notes">$40K</td></tr>
+      <tr class="fship" data-region="asia" data-stage="early" data-format="degree"><td class="col-name"><a href="https://yenchingacademy.pku.edu.cn/" target="_blank" rel="noopener">Yenching Academy</a></td><td class="col-desc">Fully-funded master&rsquo;s at Peking University for international students focused on China studies.</td><td class="col-who">Recent grads</td><td class="col-notes">Beijing · Funded</td></tr>
+      <tr class="fship" data-region="asia" data-stage="early" data-format="degree"><td class="col-name"><a href="https://www.schwarzmanscholars.org/" target="_blank" rel="noopener">Schwarzman Scholars</a></td><td class="col-desc">One-year master&rsquo;s at Tsinghua University in Beijing in Global Affairs. 150 scholars per class.</td><td class="col-who">Under 29</td><td class="col-notes">Funded · Beijing</td></tr>
+      <tr class="fship" data-region="asia" data-stage="early" data-format="cohort"><td class="col-name"><a href="https://www.eastwestcenter.org/education/asia-pacific-leadership-program" target="_blank" rel="noopener">APLP (East-West Center)</a></td><td class="col-desc">Nine-month residential program in Honolulu for emerging Asia-Pacific leaders.</td><td class="col-who">Mid-career</td><td class="col-notes">Funded · Hawaii</td></tr>
+      <tr class="fship" data-region="asia" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://mansfieldfdn.org/" target="_blank" rel="noopener">Mansfield Foundation Programs</a></td><td class="col-desc">US–Asia dialogue programs, US–Japan Network for the Future, Senior Fellows beyond the Mansfield Fellowship.</td><td class="col-who">US–Asia focus</td><td class="col-notes">Various</td></tr>
+      <tr class="fship" data-region="asia" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.kf.or.kr/" target="_blank" rel="noopener">Korea Foundation</a></td><td class="col-desc">Multiple programs funding Korea-focused research, language study, and exchanges for international scholars.</td><td class="col-who">Korea focus</td><td class="col-notes">Funded</td></tr>
+      <tr class="fship" data-region="asia" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.spf.org/en/" target="_blank" rel="noopener">Sasakawa Peace Foundation</a></td><td class="col-desc">Japan-based foundation funding US–Japan, Indo-Pacific, and women&rsquo;s leadership research.</td><td class="col-who">Various</td><td class="col-notes">Tokyo + global</td></tr>
+      <tr class="fship" data-region="asia" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.jpf.go.jp/cgp/" target="_blank" rel="noopener">Japan Foundation CGP</a></td><td class="col-desc">Funds US–Japan collaboration on global issues through grants, fellowships, and exchanges.</td><td class="col-who">US–Japan focus</td><td class="col-notes">Various</td></tr>
+      <tr class="fship" data-region="asia" data-stage="early" data-format="cohort"><td class="col-name"><a href="https://www.usjapancouncil.org/programs/" target="_blank" rel="noopener">US-Japan Council Emerging Leaders</a></td><td class="col-desc">Annual leadership program for Japanese American and US-Japan emerging leaders.</td><td class="col-who">Japanese American / US-Japan</td><td class="col-notes">Annual cohort</td></tr>
+      <tr class="fship" data-region="asia" data-stage="early" data-format="residential"><td class="col-name"><a href="https://tomodachi.org/" target="_blank" rel="noopener">TOMODACHI Initiative</a></td><td class="col-desc">US-Japan public-private partnership programs across high school, college, and young professional exchanges.</td><td class="col-who">Various ages</td><td class="col-notes">Funded</td></tr>
+      <tr class="fship" data-region="asia" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://thinc-platform.com/" target="_blank" rel="noopener">THINC Fellowship</a></td><td class="col-desc">Tencent + Viva la Vida 12-month virtual program for 50 changemakers on technology and humanity.</td><td class="col-who">Global</td><td class="col-notes">Virtual · 12 mo</td></tr>
+      <tr class="fship" data-region="asia" data-stage="mid" data-format="events"><td class="col-name"><a href="https://www.salzburgglobal.org/" target="_blank" rel="noopener">Salzburg Asia Policy Forum</a></td><td class="col-desc">Five-day Salzburg forum for 35–45 mid-career Asian policy professionals on digital governance.</td><td class="col-who">5–10 yrs · Asian citizens</td><td class="col-notes">Salzburg 1 wk</td></tr>
+      <tr class="fship" data-region="asia" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.eastasiaforum.org/" target="_blank" rel="noopener">East Asia Forum (ANU)</a></td><td class="col-desc">ANU&rsquo;s editorial platform and network for emerging Asia-Pacific economic and security analysts.</td><td class="col-who">Academic / policy</td><td class="col-notes">Publication-focused</td></tr>
+      <tr class="fship" data-region="asia" data-stage="early" data-format="degree"><td class="col-name"><a href="https://www.lkyspp.nus.edu.sg/" target="_blank" rel="noopener">LKY School of Public Policy</a></td><td class="col-desc">Singapore&rsquo;s top public policy school. Multiple master&rsquo;s programs and Li Ka Shing Fellowships.</td><td class="col-who">Public policy MA</td><td class="col-notes">Singapore</td></tr>
+      <tr class="fship" data-region="asia" data-stage="early" data-format="residential"><td class="col-name"><a href="https://exchanges.state.gov/non-us/program/critical-language-scholarship-program" target="_blank" rel="noopener">Critical Language Scholarship</a></td><td class="col-desc">US State Department immersion program for intensive overseas study of critical languages (Chinese, Arabic, Hindi, etc.).</td><td class="col-who">US undergrad / grad</td><td class="col-notes">Funded · Summer</td></tr>
+      <tr class="fship" data-region="us" data-stage="undergrad" data-format="cohort"><td class="col-name"><a href="https://www.borenawards.org/" target="_blank" rel="noopener">Boren Awards (NSEP)</a></td><td class="col-desc">Defense-funded scholarships for US students to study less-commonly taught languages and cultures abroad.</td><td class="col-who">US citizens</td><td class="col-notes">1-yr fed gov commitment</td></tr>
+      <tr class="fship" data-region="asia" data-stage="early" data-format="residential"><td class="col-name"><a href="https://blakemorefoundation.org/" target="_blank" rel="noopener">Blakemore Freeman Fellowships</a></td><td class="col-desc">Funds one academic year of advanced Asian language study (Chinese, Japanese, Korean, Khmer, etc.) in Asia.</td><td class="col-who">US citizens / PRs</td><td class="col-notes">Funded · Asia</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 03 — TRANSATLANTIC -->
+<section class="cat" id="transatlantic">
+  <div class="cat-head"><span class="cat-num">03</span><h2>Transatlantic, Europe &amp; Germany</h2></div>
+  <p class="cat-blurb">US–European bridges, especially the dense German–American leadership pipeline funded by foundations like Bosch, Mercator, GMF, and the political party foundations.</p>
+  <table class="fellowships">
+    <thead><tr><th>Program</th><th>What it is</th><th>Who</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr class="fship" data-region="europe" data-stage="mid" data-format="events"><td class="col-name"><a href="https://www.gmfus.org/marshall-memorial-fellowship" target="_blank" rel="noopener">Marshall Memorial Fellowship</a></td><td class="col-desc">German Marshall Fund flagship transatlantic leadership program. 24–27 fellows per year, 3 weeks of immersive travel.</td><td class="col-who">Mid-career US or EU</td><td class="col-notes">3 wks · Funded</td></tr>
+      <tr class="fship" data-region="europe" data-stage="early" data-format="events"><td class="col-name"><a href="https://www.atlantik-bruecke.org/en/our-work/programs/new-bridge-program/" target="_blank" rel="noopener">Atlantik-Brücke New Bridge</a></td><td class="col-desc">Fully funded transatlantic fellowship for young US and German professionals underrepresented in transatlantic relations.</td><td class="col-who">US residents · Diverse backgrounds</td><td class="col-notes">Funded · Travel-based</td></tr>
+      <tr class="fship" data-region="europe" data-stage="mid" data-format="events"><td class="col-name"><a href="https://www.acgusa.org/fellowships/mccloy-fellowships/" target="_blank" rel="noopener">McCloy Fellowships (ACG)</a></td><td class="col-desc">American Council on Germany&rsquo;s self-directed transatlantic research fellowship. $7K stipend for research trip.</td><td class="col-who">Under 40 · 5+ yrs · US or German</td><td class="col-notes">$7K</td></tr>
+      <tr class="fship" data-region="europe" data-stage="senior" data-format="residential"><td class="col-name"><a href="https://www.robertboschacademy.de/en/fellowship" target="_blank" rel="noopener">Richard von Weizsäcker Fellowship</a></td><td class="col-desc">High-profile Berlin residency of several months for international thinkers. Nomination only.</td><td class="col-who">Senior</td><td class="col-notes">Berlin · Funded</td></tr>
+      <tr class="fship" data-region="europe" data-stage="early" data-format="cohort"><td class="col-name"><a href="https://www.mercator-kolleg.de/en/" target="_blank" rel="noopener">Mercator Fellowship</a></td><td class="col-desc">13-month fellowship for 20 changemakers to work at 2–3 international organizations or NGOs worldwide.</td><td class="col-who">German/Swiss · Under 29</td><td class="col-notes">13 mo</td></tr>
+      <tr class="fship" data-region="europe" data-stage="mid" data-format="residential"><td class="col-name"><a href="https://www.eui.eu/en/academic-units/school-of-transnational-governance" target="_blank" rel="noopener">EUI Policy Leader Fellowship</a></td><td class="col-desc">European University Institute residential program at the Florence School of Transnational Governance.</td><td class="col-who">Mid-career policy</td><td class="col-notes">Florence · 5–10 mo</td></tr>
+      <tr class="fship" data-region="europe" data-stage="early" data-format="degree"><td class="col-name"><a href="https://www.kas.de/en/web/begabtenfoerderung-und-kultur/international-talent-development" target="_blank" rel="noopener">KAS Scholarship</a></td><td class="col-desc">Konrad-Adenauer-Stiftung: fully funded MA/PhD at German universities aligned with KAS values.</td><td class="col-who">International grad · B2 German</td><td class="col-notes">Germany · Funded</td></tr>
+      <tr class="fship" data-region="europe" data-stage="early" data-format="degree"><td class="col-name"><a href="https://www.fes.de/en/studienfoerderung" target="_blank" rel="noopener">Friedrich Ebert Stiftung</a></td><td class="col-desc">Social-democratic foundation funding MA/PhD students with progressive values at German universities.</td><td class="col-who">International grad</td><td class="col-notes">Germany · Funded</td></tr>
+      <tr class="fship" data-region="europe" data-stage="early" data-format="degree"><td class="col-name"><a href="https://www.freiheit.org/" target="_blank" rel="noopener">Friedrich Naumann Foundation</a></td><td class="col-desc">Liberal foundation funding international scholarship students at German universities.</td><td class="col-who">International grad</td><td class="col-notes">Germany · Funded</td></tr>
+      <tr class="fship" data-region="europe" data-stage="early" data-format="degree"><td class="col-name"><a href="https://www.boell.de/en/scholarships" target="_blank" rel="noopener">Heinrich Böll Stiftung</a></td><td class="col-desc">Green-aligned foundation funding MA/PhD scholarships for international students.</td><td class="col-who">International grad</td><td class="col-notes">Germany · Funded</td></tr>
+      <tr class="fship" data-region="europe" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.bmw-foundation.org/" target="_blank" rel="noopener">BMW Foundation Responsible Leaders</a></td><td class="col-desc">Global network of 2,800+ leaders across business, politics, and civil society. Convenings and grants.</td><td class="col-who">Mid-senior leaders</td><td class="col-notes">Munich · Nomination</td></tr>
+      <tr class="fship" data-region="europe" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.theglobalbridge.de/" target="_blank" rel="noopener">Global Bridges</a></td><td class="col-desc">Transatlantic dialogue network founded by the Henkel family for German-American policy and business leaders.</td><td class="col-who">Mid-senior</td><td class="col-notes">Membership-based</td></tr>
+      <tr class="fship" data-region="europe" data-stage="mid" data-format="events"><td class="col-name"><a href="https://www.salzburgglobal.org/" target="_blank" rel="noopener">Salzburg Global Seminar</a></td><td class="col-desc">Multiple themed week-long convenings annually in Salzburg. 40,000+ Fellows since 1947.</td><td class="col-who">Mid-career</td><td class="col-notes">1 wk · Various</td></tr>
+      <tr class="fship" data-region="europe" data-stage="early" data-format="events"><td class="col-name"><a href="https://www.gmfus.org/manfred-w%C3%B6rner-seminar" target="_blank" rel="noopener">Manfred Wörner Seminar</a></td><td class="col-desc">Annual GMF security policy seminar in Germany for emerging US, German, and European leaders.</td><td class="col-who">Under 35</td><td class="col-notes">Germany · 2 wks</td></tr>
+      <tr class="fship" data-region="europe" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.libmod.de/en/" target="_blank" rel="noopener">Center for Liberal Modernity</a></td><td class="col-desc">Berlin think tank with research fellowships on democracy, transatlantic relations, and Russia/Ukraine policy.</td><td class="col-who">Researchers</td><td class="col-notes">Berlin</td></tr>
+      <tr class="fship" data-region="europe" data-stage="senior" data-format="cohort"><td class="col-name"><a href="https://www.hertie-school.org/en/get-involved/henrik-enderlein-fellowship" target="_blank" rel="noopener">Henrik Enderlein Fellowship</a></td><td class="col-desc">Berlin-based public policy fellowship at Hertie School for senior practitioners in transatlantic policy.</td><td class="col-who">Senior</td><td class="col-notes">Berlin · Funded</td></tr>
+      <tr class="fship" data-region="europe" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.realinstitutoelcano.org/en/" target="_blank" rel="noopener">Real Instituto Elcano</a></td><td class="col-desc">Spain&rsquo;s top foreign policy think tank with research affiliations and policy fellowships.</td><td class="col-who">Researchers</td><td class="col-notes">Madrid</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 04 — TECH/AI -->
+<section class="cat" id="tech-ai">
+  <div class="cat-head"><span class="cat-num">04</span><h2>Tech, AI &amp; Innovation Policy</h2></div>
+  <p class="cat-blurb">For technologists moving into policy work, or policy folks deepening tech expertise. Heavy concentration around AI safety, biosecurity, and emerging-tech governance.</p>
+  <table class="fellowships">
+    <thead><tr><th>Program</th><th>What it is</th><th>Who</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr class="fship" data-region="global" data-stage="early" data-format="recognition"><td class="col-name"><a href="https://www.innovatorsunder35.com/" target="_blank" rel="noopener">MIT TR35 Innovators Under 35</a></td><td class="col-desc">Annual list of 35 innovators under 35 across 9 categories including AI &amp; Robotics. Self-nomination accepted.</td><td class="col-who">Under 35</td><td class="col-notes">Free · Self-nominate</td></tr>
+      <tr class="fship" data-region="us" data-stage="early" data-format="residential"><td class="col-name"><a href="https://coefficientgiving.org/open-philanthropy-technology-policy-fellowship/" target="_blank" rel="noopener">Open Phil Tech Policy</a></td><td class="col-desc">Open Philanthropy&rsquo;s longtermism-motivated AI and biosecurity policy fellowship placing fellows in US policy roles.</td><td class="col-who">AI/bio interest</td><td class="col-notes">DC-focused</td></tr>
+      <tr class="fship" data-region="us" data-stage="early" data-format="residential"><td class="col-name"><a href="https://cisac.fsi.stanford.edu/cisac-fellowships" target="_blank" rel="noopener">Stanford CISAC AI Fellows</a></td><td class="col-desc">Center for International Security and Cooperation residential fellowships specifically on AI &amp; security.</td><td class="col-who">Researchers</td><td class="col-notes">Stanford · Funded</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://cyber.harvard.edu/" target="_blank" rel="noopener">Berkman Klein Center</a></td><td class="col-desc">Harvard&rsquo;s tech-and-society research center. Affiliations span academic year + summer institutes.</td><td class="col-who">Researchers / journalists / tech</td><td class="col-notes">Cambridge MA</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="residential"><td class="col-name"><a href="https://carnegieendowment.org/" target="_blank" rel="noopener">Carnegie Endowment</a></td><td class="col-desc">Premier US foreign-policy think tank. Multiple senior, visiting, junior fellowships including Carnegie China.</td><td class="col-who">Mid-senior</td><td class="col-notes">DC + global</td></tr>
+      <tr class="fship" data-region="us" data-stage="early" data-format="cohort"><td class="col-name"><a href="https://gulab.georgetown.edu/" target="_blank" rel="noopener">Georgetown Better Governance Lab</a></td><td class="col-desc">McCourt School fellowship for tech-policy researchers and practitioners.</td><td class="col-who">Tech-policy focus</td><td class="col-notes">DC</td></tr>
+      <tr class="fship" data-region="us" data-stage="early" data-format="degree"><td class="col-name"><a href="https://schmidtsciencefellows.org/" target="_blank" rel="noopener">Schmidt Science Fellows</a></td><td class="col-desc">Eric and Wendy Schmidt postdoctoral fellowship enabling scientists to pivot disciplines into AI applications.</td><td class="col-who">PhD</td><td class="col-notes">Postdoc · Funded</td></tr>
+      <tr class="fship" data-region="global" data-stage="early" data-format="degree"><td class="col-name"><a href="https://schmidtaiinsciencepostdocs.ucsd.edu/" target="_blank" rel="noopener">Schmidt AI in Science Postdocs</a></td><td class="col-desc">Postdoc placements at Toronto, Oxford, UCSD, Michigan, Chicago to apply AI methods to science.</td><td class="col-who">Recent PhD</td><td class="col-notes">University · Funded</td></tr>
+      <tr class="fship" data-region="us" data-stage="early" data-format="cohort"><td class="col-name"><a href="https://aspenpolicyacademy.org/" target="_blank" rel="noopener">Aspen Tech Policy Hub</a></td><td class="col-desc">Six-month fellowship in San Francisco for technologists writing policy proposals on tech&rsquo;s social impact.</td><td class="col-who">Tech professionals</td><td class="col-notes">SF · Funded</td></tr>
+      <tr class="fship" data-region="us" data-stage="early" data-format="cohort"><td class="col-name"><a href="https://www.newamerica.org/future-tense/" target="_blank" rel="noopener">New America Future Tense</a></td><td class="col-desc">Joint program with Slate and ASU on tech&rsquo;s impact on policy, society, and culture.</td><td class="col-who">Tech-policy writers</td><td class="col-notes">Various</td></tr>
+      <tr class="fship" data-region="us" data-stage="early" data-format="residential"><td class="col-name"><a href="https://www.fas.org/work/day-one-fellowship" target="_blank" rel="noopener">Day One Fellowship (FAS)</a></td><td class="col-desc">Federation of American Scientists program for early-career professionals developing actionable policy proposals.</td><td class="col-who">Early-career</td><td class="col-notes">DC · Funded</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://citp.princeton.edu/" target="_blank" rel="noopener">Princeton CITP</a></td><td class="col-desc">Princeton Center for Information Technology Policy. Visiting positions for researchers and practitioners.</td><td class="col-who">Researchers</td><td class="col-notes">Princeton · Funded</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://cltc.berkeley.edu/" target="_blank" rel="noopener">UC Berkeley CLTC</a></td><td class="col-desc">Center for Long-Term Cybersecurity. Affiliate scholar and grant programs on cyber and AI policy.</td><td class="col-who">Researchers</td><td class="col-notes">Berkeley</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://hai.stanford.edu/" target="_blank" rel="noopener">Stanford HAI</a></td><td class="col-desc">Stanford Institute for Human-Centered AI. Multiple affiliated researcher and visiting fellow positions.</td><td class="col-who">AI researchers</td><td class="col-notes">Stanford</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://knightcolumbia.org/" target="_blank" rel="noopener">Knight First Amendment Institute</a></td><td class="col-desc">Columbia institute defending free expression in the digital age. Fellowships for legal scholars and journalists.</td><td class="col-who">Legal / journalism</td><td class="col-notes">NYC · Funded</td></tr>
+      <tr class="fship" data-region="us" data-stage="early" data-format="cohort"><td class="col-name"><a href="https://itif.org/" target="_blank" rel="noopener">ITIF Schultz Fellowship</a></td><td class="col-desc">Information Technology and Innovation Foundation policy fellowship for emerging tech-policy analysts.</td><td class="col-who">Early-career</td><td class="col-notes">DC · Funded</td></tr>
+      <tr class="fship" data-region="europe" data-stage="early" data-format="cohort"><td class="col-name"><a href="https://www.adalovelaceinstitute.org/" target="_blank" rel="noopener">Ada Lovelace Institute</a></td><td class="col-desc">UK research institute on data and AI ethics. Research fellowships and visiting positions.</td><td class="col-who">Researchers</td><td class="col-notes">London · Funded</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.mercatus.org/scholars" target="_blank" rel="noopener">Mercatus Center</a></td><td class="col-desc">Market-oriented research center at George Mason with senior research fellowships in tech and regulation.</td><td class="col-who">Researchers</td><td class="col-notes">Arlington VA · Funded</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 05 — LEADERSHIP -->
+<section class="cat" id="leadership">
+  <div class="cat-head"><span class="cat-num">05</span><h2>Leadership &amp; Entrepreneurship</h2></div>
+  <p class="cat-blurb">Senior leadership development — Aspen-style cohort programs, founder communities, and presidential-orbit programs.</p>
+  <table class="fellowships">
+    <thead><tr><th>Program</th><th>What it is</th><th>Who</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.aspeninstitute.org/programs/henry-crown-fellowship/" target="_blank" rel="noopener">Henry Crown Fellowship</a></td><td class="col-desc">Two-year Aspen cohort for for-profit entrepreneurial leaders moving from &ldquo;success to significance.&rdquo; Four seminars in Aspen.</td><td class="col-who">Ages 30–46 · Aspen nom</td><td class="col-notes">Funded</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.presidentialleadershipscholars.org/" target="_blank" rel="noopener">Presidential Leadership Scholars</a></td><td class="col-desc">Six-month leadership program convening at the Bush 41, Clinton, Bush 43, and LBJ presidential libraries.</td><td class="col-who">Mid-career US</td><td class="col-notes">Free · Self-app</td></tr>
+      <tr class="fship" data-region="global" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://endeavor.org/entrepreneur-experience/apply/" target="_blank" rel="noopener">Endeavor Entrepreneur</a></td><td class="col-desc">Global high-impact entrepreneur network. Multi-stage selection; no equity, no application fee.</td><td class="col-who">$500K–$10M annual rev</td><td class="col-notes">Lifetime network</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.kauffmanfellows.org/" target="_blank" rel="noopener">Kauffman Fellows</a></td><td class="col-desc">Two-year venture capital education program with strong alumni network. ~80 fellows per class.</td><td class="col-who">VC investors</td><td class="col-notes">$80K tuition · 2 yrs</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="residential"><td class="col-name"><a href="https://politics.uchicago.edu/fellows/apply-to-be-a-fellow" target="_blank" rel="noopener">Pritzker Fellows (UChicago)</a></td><td class="col-desc">Eight-week residency at UChicago IOP bringing former officials, journalists, and practitioners to lead student seminars.</td><td class="col-who">Former officials / practitioners</td><td class="col-notes">UChicago · 8 wks</td></tr>
+      <tr class="fship" data-region="global" data-stage="mid" data-format="events"><td class="col-name"><a href="https://www.efworld.org/apply-now/" target="_blank" rel="noopener">Eisenhower Fellowships</a></td><td class="col-desc">Nearly six-week US program for mid-career international leaders developing collaborative projects.</td><td class="col-who">Ages 32–45 · Non-US</td><td class="col-notes">Funded</td></tr>
+      <tr class="fship" data-region="global" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.weforum.org/communities/young-global-leaders/" target="_blank" rel="noopener">WEF Young Global Leaders</a></td><td class="col-desc">Forum for ~100 leaders under 38 selected annually for the Davos community. Five-year program.</td><td class="col-who">Under 38</td><td class="col-notes">Nomination · Tiered contribution</td></tr>
+      <tr class="fship" data-region="global" data-stage="early" data-format="cohort"><td class="col-name"><a href="https://www.weforum.org/communities/global-shapers/" target="_blank" rel="noopener">WEF Global Shapers</a></td><td class="col-desc">Local hub-based community for emerging leaders under 30 across 500+ cities globally.</td><td class="col-who">Under 30</td><td class="col-notes">Apply to local hub</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="degree"><td class="col-name"><a href="https://www.hks.harvard.edu/educational-programs/masters-programs/mid-career-master-public-administration/mcmpa-edward-s-mason" target="_blank" rel="noopener">Mason Fellow (Harvard MC/MPA)</a></td><td class="col-desc">Edward S. Mason Program designation for the HKS Mid-Career MPA for leaders from emerging economies.</td><td class="col-who">7+ yrs · Emerging nations</td><td class="col-notes">HKS</td></tr>
+      <tr class="fship" data-region="global" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.trilateral.org/about/david-rockefeller-fellows/" target="_blank" rel="noopener">David Rockefeller Fellows</a></td><td class="col-desc">Trilateral Commission annual cohort for emerging leaders in NA, Europe, and Asia-Pacific regions.</td><td class="col-who">Under 35</td><td class="col-notes">Commission nomination</td></tr>
+      <tr class="fship" data-region="us" data-stage="senior" data-format="cohort"><td class="col-name"><a href="https://www.aspeninstitute.org/programs/aspen-finance-leaders-fellowship/" target="_blank" rel="noopener">Aspen Finance Leaders</a></td><td class="col-desc">Two-year Aspen program for senior finance executives focused on the social purpose of finance.</td><td class="col-who">Senior finance</td><td class="col-notes">Nomination · Funded</td></tr>
+      <tr class="fship" data-region="us" data-stage="senior" data-format="cohort"><td class="col-name"><a href="https://www.aspeninstitute.org/programs/pahara-aspen-education-fellowship/" target="_blank" rel="noopener">Pahara–Aspen Education Fellows</a></td><td class="col-desc">Aspen leadership program for senior K-12 education leaders driving systemic change.</td><td class="col-who">Senior education</td><td class="col-notes">2 yrs · Funded</td></tr>
+      <tr class="fship" data-region="africa" data-stage="senior" data-format="cohort"><td class="col-name"><a href="https://www.aspeninstitute.org/programs/africa-leadership-initiative/" target="_blank" rel="noopener">Africa Leadership Initiative</a></td><td class="col-desc">Africa-focused Aspen Institute leadership program with multiple regional chapters.</td><td class="col-who">Senior African</td><td class="col-notes">2 yrs · Funded</td></tr>
+      <tr class="fship" data-region="us" data-stage="senior" data-format="cohort"><td class="col-name"><a href="https://www.aspeninstitute.org/programs/aspen-civil-society-fellowship/" target="_blank" rel="noopener">ADL–Aspen Civil Society</a></td><td class="col-desc">Aspen+ADL fellowship building cross-sector leadership to defend civil society and combat extremism.</td><td class="col-who">Mid-senior</td><td class="col-notes">Nomination · Funded</td></tr>
+      <tr class="fship" data-region="global" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.ypo.org/" target="_blank" rel="noopener">YPO (Young Presidents&rsquo; Org)</a></td><td class="col-desc">Global peer network for chief executives under 45 leading qualifying-size companies.</td><td class="col-who">CEOs · Under 45</td><td class="col-notes">Dues-based</td></tr>
+      <tr class="fship" data-region="global" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.eonetwork.org/" target="_blank" rel="noopener">Entrepreneurs&rsquo; Organization (EO)</a></td><td class="col-desc">Global community of entrepreneurs running businesses with $1M+ revenue. Local chapters worldwide.</td><td class="col-who">Founders $1M+ rev</td><td class="col-notes">Membership-based</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.berggruen.org/" target="_blank" rel="noopener">Berggruen Institute</a></td><td class="col-desc">LA-based institute supporting long-term thinking. $1M Berggruen Prize for Philosophy &amp; Culture.</td><td class="col-who">Senior thinkers</td><td class="col-notes">LA · Various</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 06 — RESEARCH -->
+<section class="cat" id="research">
+  <div class="cat-head"><span class="cat-num">06</span><h2>Research, Writing &amp; Public Intellectual</h2></div>
+  <p class="cat-blurb">Programs for serious writing, research, and public-intellectual work — including the rare high-stipend programs that don&rsquo;t require relocation.</p>
+  <table class="fellowships">
+    <thead><tr><th>Program</th><th>What it is</th><th>Who</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.newamerica.org/fellows/" target="_blank" rel="noopener">New America Fellows</a></td><td class="col-desc">$15K–$30K unrestricted stipend for journalists, scholars, filmmakers, and policy thinkers. No relocation.</td><td class="col-who">Open to non-US citizens</td><td class="col-notes">$15–30K · 2 DC gatherings/yr</td></tr>
+      <tr class="fship" data-region="us" data-stage="senior" data-format="cohort"><td class="col-name"><a href="https://www.carnegie.org/awards/award/andrew-carnegie-fellows/" target="_blank" rel="noopener">Andrew Carnegie Fellow</a></td><td class="col-desc">$200,000 fellowship for 30 senior scholars and public intellectuals per year working on a major book.</td><td class="col-who">PhD or senior professional</td><td class="col-notes">$200K · Institution nom</td></tr>
+      <tr class="fship" data-region="us" data-stage="senior" data-format="residential"><td class="col-name"><a href="https://funggfp.princeton.edu/applications" target="_blank" rel="noopener">Fung Global Fellows (Princeton)</a></td><td class="col-desc">10-month residential fellowship at Princeton&rsquo;s Institute for International &amp; Regional Studies.</td><td class="col-who">PhD outside US</td><td class="col-notes">Princeton · Funded</td></tr>
+      <tr class="fship" data-region="us" data-stage="senior" data-format="residential"><td class="col-name"><a href="https://www.hoover.org/hoover-fellows-program" target="_blank" rel="noopener">Hoover Institution Fellows</a></td><td class="col-desc">Five-year in-residence position at Stanford&rsquo;s Hoover Institution. No teaching required.</td><td class="col-who">PhD</td><td class="col-notes">$165–230K + housing</td></tr>
+      <tr class="fship" data-region="us" data-stage="senior" data-format="residential"><td class="col-name"><a href="https://www.brookings.edu/programs/foreign-policy/" target="_blank" rel="noopener">Brookings Foreign Policy</a></td><td class="col-desc">Multiple senior, visiting, and post-doctoral fellowships at Brookings&rsquo; Foreign Policy program.</td><td class="col-who">PhD or senior career</td><td class="col-notes">DC · Funded</td></tr>
+      <tr class="fship" data-region="us" data-stage="senior" data-format="residential"><td class="col-name"><a href="https://www.wilsoncenter.org/fellowship-application-guidelines" target="_blank" rel="noopener">Wilson Center Fellowship</a></td><td class="col-desc">Nine-month residential research fellowship at the Wilson Center in DC for policy-relevant projects.</td><td class="col-who">PhD</td><td class="col-notes">DC · 9 mo · Funded</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://carnegiecouncil.org/initiatives-issues/carnegie-ethics-fellows" target="_blank" rel="noopener">Carnegie Ethics Fellows</a></td><td class="col-desc">Two-year NYC-based leadership program in ethics and international affairs. 6 in-person modules.</td><td class="col-who">Ages 25–35</td><td class="col-notes">Free · NYC</td></tr>
+      <tr class="fship" data-region="global" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.theopedproject.org/fellowships" target="_blank" rel="noopener">Public Voices (OpEd Project)</a></td><td class="col-desc">OpEd Project program teaching writers and scholars to place op-eds and reach larger audiences.</td><td class="col-who">Faculty / scholars</td><td class="col-notes">Multiple hosts</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="residential"><td class="col-name"><a href="https://www.acls.org/" target="_blank" rel="noopener">ACLS Fellowships</a></td><td class="col-desc">American Council of Learned Societies funds book-stage fellowships across humanities and humanistic social sciences.</td><td class="col-who">PhD</td><td class="col-notes">Funded</td></tr>
+      <tr class="fship" data-region="us" data-stage="senior" data-format="residential"><td class="col-name"><a href="https://www.mellon.org/" target="_blank" rel="noopener">Mellon Foundation</a></td><td class="col-desc">Multiple humanities and arts research fellowships at university partners and via Sawyer Seminar program.</td><td class="col-who">Humanities</td><td class="col-notes">Various</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.neh.gov/program/public-scholars" target="_blank" rel="noopener">NEH Public Scholar</a></td><td class="col-desc">National Endowment for the Humanities funding for non-fiction trade books reaching general readers.</td><td class="col-who">Non-fiction authors</td><td class="col-notes">$60K · 9 mo</td></tr>
+      <tr class="fship" data-region="us" data-stage="senior" data-format="residential"><td class="col-name"><a href="https://www.loc.gov/programs/john-w-kluge-center/about-this-program/" target="_blank" rel="noopener">Library of Congress Kluge Center</a></td><td class="col-desc">Multiple research fellowships at the Library of Congress&rsquo; Kluge Center.</td><td class="col-who">PhD</td><td class="col-notes">DC · Funded</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="residential"><td class="col-name"><a href="https://www.niemanfoundation.harvard.edu/" target="_blank" rel="noopener">Nieman Fellowship</a></td><td class="col-desc">Harvard&rsquo;s flagship journalism fellowship. One academic year in Cambridge for working journalists worldwide.</td><td class="col-who">Journalists 5+ yrs</td><td class="col-notes">Harvard · Funded</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="residential"><td class="col-name"><a href="https://www.knight.umich.edu/" target="_blank" rel="noopener">Knight–Wallace Fellowship</a></td><td class="col-desc">Academic-year fellowship for mid-career journalists at the University of Michigan. $80K stipend.</td><td class="col-who">Journalists</td><td class="col-notes">Michigan · $80K</td></tr>
+      <tr class="fship" data-region="us" data-stage="early" data-format="residential"><td class="col-name"><a href="https://pulitzercenter.org/grants-fellowships" target="_blank" rel="noopener">Pulitzer Center</a></td><td class="col-desc">Grants for journalists reporting on underreported global issues at student and professional levels.</td><td class="col-who">Journalists</td><td class="col-notes">Various</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="residential"><td class="col-name"><a href="https://www.loganfellow.org/" target="_blank" rel="noopener">Logan Nonfiction Program</a></td><td class="col-desc">Five-week book-stage residency at the Carey Institute for Global Good in Rensselaerville, NY.</td><td class="col-who">Nonfiction writers</td><td class="col-notes">NY · 5 wks</td></tr>
+      <tr class="fship" data-region="europe" data-stage="senior" data-format="residential"><td class="col-name"><a href="https://www.iwm.at/" target="_blank" rel="noopener">IWM (Vienna)</a></td><td class="col-desc">Vienna-based residential fellowships for scholars in humanities and social sciences.</td><td class="col-who">Humanities PhDs</td><td class="col-notes">Vienna · Funded</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 07 — SOCIAL IMPACT -->
+<section class="cat" id="social-impact">
+  <div class="cat-head"><span class="cat-num">07</span><h2>Social Impact &amp; Development</h2></div>
+  <p class="cat-blurb">For social entrepreneurs, peacebuilders, and development leaders. Mix of seed-stage funding, network membership, and prizes.</p>
+  <table class="fellowships">
+    <thead><tr><th>Program</th><th>What it is</th><th>Who</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr class="fship" data-region="global" data-stage="early" data-format="cohort"><td class="col-name"><a href="https://echoinggreen.org/fellowship/" target="_blank" rel="noopener">Echoing Green</a></td><td class="col-desc">$100K stipend across 18 months for founders of early-stage social impact ventures.</td><td class="col-who">Original founders · Pre-5yr ventures</td><td class="col-notes">$100K</td></tr>
+      <tr class="fship" data-region="global" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.ashoka.org/en-us/program/ashoka-fellowship" target="_blank" rel="noopener">Ashoka Fellow</a></td><td class="col-desc">Lifetime membership in Ashoka&rsquo;s global community of social entrepreneurs. Stipend + lifetime network.</td><td class="col-who">System-changers</td><td class="col-notes">Lifetime · Nomination</td></tr>
+      <tr class="fship" data-region="global" data-stage="senior" data-format="recognition"><td class="col-name"><a href="https://skoll.org/" target="_blank" rel="noopener">Skoll Awards</a></td><td class="col-desc">$1.25M unrestricted awards plus Skoll World Forum membership for transformative social entrepreneurs.</td><td class="col-who">Proven social enterprise</td><td class="col-notes">$1.25M · Nomination</td></tr>
+      <tr class="fship" data-region="us" data-stage="early" data-format="residential"><td class="col-name"><a href="https://www.halcyonhouse.org/programs/halcyon-incubator/" target="_blank" rel="noopener">Halcyon Incubator</a></td><td class="col-desc">Five-month residency for early-stage social entrepreneurs in Halcyon&rsquo;s Georgetown mansion.</td><td class="col-who">Early-stage SDG ventures</td><td class="col-notes">$10K · DC 5 mo</td></tr>
+      <tr class="fship" data-region="global" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://fellowship.acumenacademy.org/" target="_blank" rel="noopener">Acumen Fellows</a></td><td class="col-desc">8-month hybrid leadership program for poverty-focused entrepreneurs across SE Asia, India, East/West Africa, Latin America, Pakistan, US.</td><td class="col-who">Mid-career social leaders</td><td class="col-notes">Regional · Free</td></tr>
+      <tr class="fship" data-region="global" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.aspenglobalinnovators.org/en/programs/new-voices-fellowship/" target="_blank" rel="noopener">Aspen New Voices</a></td><td class="col-desc">Year-long media and advocacy training for Global South experts in health, climate, gender, and development.</td><td class="col-who">Global South experts</td><td class="col-notes">Funded</td></tr>
+      <tr class="fship" data-region="europe" data-stage="early" data-format="residential"><td class="col-name"><a href="https://www.interpeace.org/international-geneva-peace-fellowship-programme/" target="_blank" rel="noopener">Geneva Peace Fellowship</a></td><td class="col-desc">9-month residential program for 10 fellows at Domaine Barton on Lake Geneva.</td><td class="col-who">Recent MA / PhD / early-mid</td><td class="col-notes">Geneva · Funded</td></tr>
+      <tr class="fship" data-region="us" data-stage="undergrad" data-format="residential"><td class="col-name"><a href="https://humanityinaction.org/usa-programs/fellowship-john-lewis/" target="_blank" rel="noopener">John Lewis Fellowship</a></td><td class="col-desc">Humanity in Action four-week summer residential in Atlanta for US and European students on democracy.</td><td class="col-who">Students / recent grads</td><td class="col-notes">Atlanta · 4 wks · Funded</td></tr>
+      <tr class="fship" data-region="global" data-stage="mid" data-format="degree"><td class="col-name"><a href="https://www.rotary.org/en/our-programs/peace-fellowships" target="_blank" rel="noopener">Rotary Peace Fellowship</a></td><td class="col-desc">Fully-funded master&rsquo;s or certificate at one of Rotary&rsquo;s Peace Centers globally.</td><td class="col-who">3+ yrs peace/dev exp</td><td class="col-notes">Global · Funded</td></tr>
+      <tr class="fship" data-region="africa" data-stage="early" data-format="residential"><td class="col-name"><a href="https://www.mandelawashingtonfellowship.org/" target="_blank" rel="noopener">Mandela Washington Fellowship</a></td><td class="col-desc">US State Dept flagship program for Young African Leaders Initiative. Six-week US institute + return projects.</td><td class="col-who">Sub-Saharan African · 25–35</td><td class="col-notes">Funded</td></tr>
+      <tr class="fship" data-region="africa" data-stage="undergrad" data-format="degree"><td class="col-name"><a href="https://mastercardfdn.org/all/scholars/" target="_blank" rel="noopener">Mastercard Foundation Scholars</a></td><td class="col-desc">Comprehensive scholarships for academically talented African students at partner universities globally.</td><td class="col-who">African students</td><td class="col-notes">Multiple unis · Funded</td></tr>
+      <tr class="fship" data-region="africa" data-stage="undergrad" data-format="cohort"><td class="col-name"><a href="https://anzishaprize.org/" target="_blank" rel="noopener">Anzisha Prize</a></td><td class="col-desc">Awards for entrepreneurs aged 15–22 in Africa solving social problems through business.</td><td class="col-who">15–22 African</td><td class="col-notes">Up to $25K</td></tr>
+      <tr class="fship" data-region="global" data-stage="early" data-format="cohort"><td class="col-name"><a href="https://atlascorps.org/" target="_blank" rel="noopener">Atlas Corps</a></td><td class="col-desc">12–18 month US-based professional fellowship for emerging leaders from outside the US.</td><td class="col-who">Non-US citizens</td><td class="col-notes">US · Funded</td></tr>
+      <tr class="fship" data-region="global" data-stage="senior" data-format="cohort"><td class="col-name"><a href="https://www.opensocietyfoundations.org/grants/open-society-fellowship" target="_blank" rel="noopener">Open Society Fellowship</a></td><td class="col-desc">Open Society Foundations grants for innovative ideas advancing open societies globally.</td><td class="col-who">Senior thinkers</td><td class="col-notes">Up to $100K</td></tr>
+      <tr class="fship" data-region="us" data-stage="early" data-format="cohort"><td class="col-name"><a href="https://obama.org/programs/leaders/" target="_blank" rel="noopener">Obama Leaders (Africa, EU, US)</a></td><td class="col-desc">Six-month cohort programs in regional formats for emerging changemakers (Asia-Pacific listed separately).</td><td class="col-who">Ages 24–45</td><td class="col-notes">Free · Regional</td></tr>
+      <tr class="fship" data-region="global" data-stage="early" data-format="cohort"><td class="col-name"><a href="https://www.draperrichards.org/" target="_blank" rel="noopener">Draper Richards Kaplan</a></td><td class="col-desc">$300K over three years plus support for high-impact early-stage social entrepreneurs.</td><td class="col-who">Early-stage nonprofits / B-corps</td><td class="col-notes">$300K + support</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://newprofit.org/" target="_blank" rel="noopener">New Profit</a></td><td class="col-desc">Venture philanthropy investing in breakthrough social entrepreneurs and movements.</td><td class="col-who">Social entrepreneurs</td><td class="col-notes">US · Multi-year</td></tr>
+      <tr class="fship" data-region="global" data-stage="undergrad" data-format="cohort"><td class="col-name"><a href="https://resolutionproject.org/" target="_blank" rel="noopener">Resolution Project</a></td><td class="col-desc">Funds and supports undergraduate social ventures via Social Venture Competitions worldwide.</td><td class="col-who">Undergrads</td><td class="col-notes">Seed + mentorship</td></tr>
+      <tr class="fship" data-region="global" data-stage="early" data-format="cohort"><td class="col-name"><a href="https://www.globalcitizenyear.org/" target="_blank" rel="noopener">Global Citizen Year</a></td><td class="col-desc">Gap-year program placing US high school graduates with mentors and projects in Brazil, India, Senegal.</td><td class="col-who">US recent HS grads</td><td class="col-notes">Funded</td></tr>
+      <tr class="fship" data-region="asia" data-stage="early" data-format="residential"><td class="col-name"><a href="https://princetoninasia.org/" target="_blank" rel="noopener">Princeton in Asia</a></td><td class="col-desc">Year-long fellowships placing recent grads at host organizations across 20+ Asian countries.</td><td class="col-who">Recent grads</td><td class="col-notes">Asia · Stipended</td></tr>
+      <tr class="fship" data-region="africa" data-stage="early" data-format="residential"><td class="col-name"><a href="https://princetoninafrica.org/" target="_blank" rel="noopener">Princeton in Africa</a></td><td class="col-desc">Year-long African development fellowships placing recent grads at partner orgs.</td><td class="col-who">Recent grads</td><td class="col-notes">Africa · Stipended</td></tr>
+      <tr class="fship" data-region="us" data-stage="senior" data-format="cohort"><td class="col-name"><a href="https://www.fordfoundation.org/our-grantmaking/" target="_blank" rel="noopener">Ford Foundation</a></td><td class="col-desc">Multiple research and leadership fellowships funding scholars and activists advancing justice.</td><td class="col-who">Various</td><td class="col-notes">Funded</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 08 — CLIMATE -->
+<section class="cat" id="climate">
+  <div class="cat-head"><span class="cat-num">08</span><h2>Climate &amp; Environment</h2></div>
+  <p class="cat-blurb">Programs specifically for climate, energy transition, and environmental leadership. Research and entrepreneurship tracks.</p>
+  <table class="fellowships">
+    <thead><tr><th>Program</th><th>What it is</th><th>Who</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr class="fship" data-region="global" data-stage="senior" data-format="recognition"><td class="col-name"><a href="https://earthshotprize.org/" target="_blank" rel="noopener">Earthshot Prize</a></td><td class="col-desc">Prince William&rsquo;s £1M prize awarded annually to five climate solutions (oceans, air, climate, nature, waste).</td><td class="col-who">Tested climate solutions</td><td class="col-notes">£1M · Nomination</td></tr>
+      <tr class="fship" data-region="global" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.halcyonhouse.org/programs/global-climate-fellowship-2026/" target="_blank" rel="noopener">Halcyon Global Climate Fellowship</a></td><td class="col-desc">Hybrid fellowship for climate-focused entrepreneurs. DC + Mexico residencies + $6K stipend + AWS credits.</td><td class="col-who">Climate founders</td><td class="col-notes">$6K + credits</td></tr>
+      <tr class="fship" data-region="us" data-stage="early" data-format="cohort"><td class="col-name"><a href="https://www.goldmanprize.org/" target="_blank" rel="noopener">Goldman Environmental Prize</a></td><td class="col-desc">Annual $200K prize honoring grassroots environmental heroes from six continental regions.</td><td class="col-who">Grassroots env leaders</td><td class="col-notes">$200K · Nomination</td></tr>
+      <tr class="fship" data-region="global" data-stage="early" data-format="cohort"><td class="col-name"><a href="https://www.elementalexcelerator.com/" target="_blank" rel="noopener">Elemental Excelerator</a></td><td class="col-desc">Climate tech accelerator funding and supporting deep-tech climate companies.</td><td class="col-who">Climate tech startups</td><td class="col-notes">Up to $1M+</td></tr>
+      <tr class="fship" data-region="us" data-stage="early" data-format="cohort"><td class="col-name"><a href="https://www.thirdderivative.org/" target="_blank" rel="noopener">Third Derivative</a></td><td class="col-desc">RMI + New Energy Nexus climate startup accelerator for commercial-scale climate solutions.</td><td class="col-who">Climate-tech founders</td><td class="col-notes">Global · Equity + grants</td></tr>
+      <tr class="fship" data-region="global" data-stage="mid" data-format="cohort"><td class="col-name"><a href="https://www.climateemergencyfund.org/" target="_blank" rel="noopener">Climate Emergency Fund</a></td><td class="col-desc">Funds disruptive climate activists and movements globally. Grants and movement-building support.</td><td class="col-who">Climate activists</td><td class="col-notes">Grants</td></tr>
+      <tr class="fship" data-region="us" data-stage="senior" data-format="cohort"><td class="col-name"><a href="https://www.gund.org/" target="_blank" rel="noopener">Gund Institute for Environment</a></td><td class="col-desc">University of Vermont&rsquo;s sustainability research institute with multiple fellowship opportunities.</td><td class="col-who">Sustainability researchers</td><td class="col-notes">Vermont · Funded</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 09 — GRADUATE -->
+<section class="cat" id="graduate">
+  <div class="cat-head"><span class="cat-num">09</span><h2>Major Graduate Scholarships</h2></div>
+  <p class="cat-blurb">The classic prestige scholarships for graduate study. Most have early-career age cutoffs — worth knowing about even when you&rsquo;ve aged out.</p>
+  <table class="fellowships">
+    <thead><tr><th>Program</th><th>What it is</th><th>Who</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr class="fship" data-region="global" data-stage="undergrad" data-format="degree"><td class="col-name"><a href="https://www.rhodeshouse.ox.ac.uk/scholarships/" target="_blank" rel="noopener">Rhodes Scholarship</a></td><td class="col-desc">Oxford fully-funded postgraduate scholarship for ~100 scholars from 60+ countries annually. Founded 1902.</td><td class="col-who">Ages 18–24</td><td class="col-notes">Oxford · Funded</td></tr>
+      <tr class="fship" data-region="us" data-stage="undergrad" data-format="degree"><td class="col-name"><a href="https://www.marshallscholarship.org/" target="_blank" rel="noopener">Marshall Scholarship</a></td><td class="col-desc">UK fully-funded graduate study for ~50 US students annually at any British university.</td><td class="col-who">US citizens under 26</td><td class="col-notes">UK · Funded</td></tr>
+      <tr class="fship" data-region="global" data-stage="early" data-format="degree"><td class="col-name"><a href="https://www.schwarzmanscholars.org/" target="_blank" rel="noopener">Schwarzman Scholars</a></td><td class="col-desc">One-year master&rsquo;s at Tsinghua University in Beijing in Global Affairs. 150 scholars per class.</td><td class="col-who">Under 29</td><td class="col-notes">Beijing · Funded</td></tr>
+      <tr class="fship" data-region="us" data-stage="early" data-format="degree"><td class="col-name"><a href="https://us.fulbrightonline.org/" target="_blank" rel="noopener">Fulbright Program</a></td><td class="col-desc">US flagship international exchange: research, English Teaching Assistantship, study, etc.</td><td class="col-who">US citizens</td><td class="col-notes">140+ countries · Funded</td></tr>
+      <tr class="fship" data-region="us" data-stage="early" data-format="degree"><td class="col-name"><a href="https://knight-hennessy.stanford.edu/" target="_blank" rel="noopener">Knight-Hennessy Scholars</a></td><td class="col-desc">Fully-funded graduate study at Stanford + leadership development. ~100 scholars per cohort.</td><td class="col-who">No age limit</td><td class="col-notes">Stanford · Funded</td></tr>
+      <tr class="fship" data-region="europe" data-stage="early" data-format="degree"><td class="col-name"><a href="https://www.gatescambridge.org/" target="_blank" rel="noopener">Gates Cambridge</a></td><td class="col-desc">Fully-funded master&rsquo;s or PhD at Cambridge for ~80 international students annually.</td><td class="col-who">Non-UK citizens</td><td class="col-notes">Cambridge · Funded</td></tr>
+      <tr class="fship" data-region="us" data-stage="undergrad" data-format="degree"><td class="col-name"><a href="https://www.mitchellscholarship.org/" target="_blank" rel="noopener">Mitchell Scholarship</a></td><td class="col-desc">Year of graduate study in Ireland for 12 US scholars annually. Named for Senator George Mitchell.</td><td class="col-who">US citizens 18–30</td><td class="col-notes">Ireland · Funded</td></tr>
+      <tr class="fship" data-region="us" data-stage="early" data-format="degree"><td class="col-name"><a href="https://www.pdsoros.org/" target="_blank" rel="noopener">Paul &amp; Daisy Soros</a></td><td class="col-desc">$90K + tuition support for graduate study for 30 immigrants or children of immigrants in the US each year.</td><td class="col-who">First or second-gen immigrants</td><td class="col-notes">Funded</td></tr>
+      <tr class="fship" data-region="global" data-stage="early" data-format="degree"><td class="col-name"><a href="https://www.chevening.org/" target="_blank" rel="noopener">Chevening Scholarship</a></td><td class="col-desc">UK government&rsquo;s fully-funded one-year master&rsquo;s in the UK. 1,500+ scholars annually from 160+ countries.</td><td class="col-who">Non-UK · 2+ yrs exp</td><td class="col-notes">UK · Funded</td></tr>
+      <tr class="fship" data-region="us" data-stage="undergrad" data-format="cohort"><td class="col-name"><a href="https://www.watson.foundation/" target="_blank" rel="noopener">Watson Fellowship</a></td><td class="col-desc">$40K for a year of independent international exploration immediately after college graduation.</td><td class="col-who">Seniors at partner colleges</td><td class="col-notes">$40K · 1 yr</td></tr>
+      <tr class="fship" data-region="europe" data-stage="early" data-format="degree"><td class="col-name"><a href="https://www.skollcentre.org/skoll-scholarship" target="_blank" rel="noopener">Skoll Scholarship (Oxford MBA)</a></td><td class="col-desc">Full Oxford MBA scholarship for 4 social entrepreneurs per year. Saïd Business School.</td><td class="col-who">3+ yrs social venture</td><td class="col-notes">Oxford MBA · Funded</td></tr>
+      <tr class="fship" data-region="europe" data-stage="early" data-format="degree"><td class="col-name"><a href="https://www.sbs.ox.ac.uk/study/mbas/oxford-mba/scholarships" target="_blank" rel="noopener">Pershing Square (Oxford 1+1)</a></td><td class="col-desc">Bill Ackman&rsquo;s scholarship combining Oxford MBA + master&rsquo;s in another discipline.</td><td class="col-who">Oxford 1+1 MBA</td><td class="col-notes">Funded</td></tr>
+      <tr class="fship" data-region="global" data-stage="early" data-format="degree"><td class="col-name"><a href="https://www.daad.org/en/" target="_blank" rel="noopener">DAAD</a></td><td class="col-desc">German Academic Exchange Service&rsquo;s many funding options for international students studying in Germany.</td><td class="col-who">International students</td><td class="col-notes">Germany · Funded</td></tr>
+      <tr class="fship" data-region="europe" data-stage="early" data-format="degree"><td class="col-name"><a href="https://erasmus-plus.ec.europa.eu/" target="_blank" rel="noopener">Erasmus Mundus</a></td><td class="col-desc">EU-funded joint masters across European partner universities. ~1,500 scholarships per year.</td><td class="col-who">Global</td><td class="col-notes">Multi-uni · Funded</td></tr>
+      <tr class="fship" data-region="global" data-stage="early" data-format="degree"><td class="col-name"><a href="https://cscuk.fcdo.gov.uk/" target="_blank" rel="noopener">Commonwealth Scholarships</a></td><td class="col-desc">UK government scholarships for citizens of Commonwealth countries to study at UK universities.</td><td class="col-who">Commonwealth citizens</td><td class="col-notes">UK · Funded</td></tr>
+      <tr class="fship" data-region="europe" data-stage="early" data-format="degree"><td class="col-name"><a href="https://www.churchillscholarship.org/" target="_blank" rel="noopener">Churchill Scholarship</a></td><td class="col-desc">One year of graduate STEM study at Churchill College, Cambridge for ~17 US students annually.</td><td class="col-who">US STEM grads</td><td class="col-notes">Cambridge · Funded</td></tr>
+      <tr class="fship" data-region="us" data-stage="undergrad" data-format="cohort"><td class="col-name"><a href="https://www.truman.gov/" target="_blank" rel="noopener">Truman Scholarship</a></td><td class="col-desc">$30K graduate study award for ~60 US undergraduates committed to public service careers.</td><td class="col-who">US college juniors</td><td class="col-notes">$30K</td></tr>
+      <tr class="fship" data-region="us" data-stage="undergrad" data-format="cohort"><td class="col-name"><a href="https://goldwaterscholarship.gov/" target="_blank" rel="noopener">Goldwater Scholarship</a></td><td class="col-desc">$7.5K undergraduate award for US students pursuing research careers in STEM.</td><td class="col-who">US STEM undergrads</td><td class="col-notes">$7.5K</td></tr>
+      <tr class="fship" data-region="us" data-stage="undergrad" data-format="cohort"><td class="col-name"><a href="https://www.udall.gov/" target="_blank" rel="noopener">Udall Scholarship</a></td><td class="col-desc">$7K undergraduate scholarship for US students committed to environment, tribal policy, or healthcare careers.</td><td class="col-who">US undergrads</td><td class="col-notes">$7K</td></tr>
+      <tr class="fship" data-region="us" data-stage="undergrad" data-format="cohort"><td class="col-name"><a href="https://www.beineckescholarship.org/" target="_blank" rel="noopener">Beinecke Scholarship</a></td><td class="col-desc">$35K graduate study award for US college juniors pursuing humanities, arts, or social sciences.</td><td class="col-who">US college juniors</td><td class="col-notes">$35K</td></tr>
+      <tr class="fship" data-region="us" data-stage="undergrad" data-format="cohort"><td class="col-name"><a href="https://www.stampsfoundation.org/" target="_blank" rel="noopener">Stamps Scholars</a></td><td class="col-desc">Multi-year undergraduate scholarships + enrichment funding across 30+ partner universities.</td><td class="col-who">US undergrads</td><td class="col-notes">Partner unis · Funded</td></tr>
+      <tr class="fship" data-region="us" data-stage="early" data-format="degree"><td class="col-name"><a href="https://www.hertzfoundation.org/" target="_blank" rel="noopener">Hertz Foundation</a></td><td class="col-desc">$250K+ PhD funding for US students in applied physical, biological, and engineering sciences.</td><td class="col-who">US STEM PhD</td><td class="col-notes">$250K+ · 5-yr</td></tr>
+      <tr class="fship" data-region="us" data-stage="early" data-format="degree"><td class="col-name"><a href="https://www.nsfgrfp.org/" target="_blank" rel="noopener">NSF GRFP</a></td><td class="col-desc">Three years of $37K/yr stipend for US PhD students in STEM and social sciences.</td><td class="col-who">US STEM/SS PhD</td><td class="col-notes">$37K/yr · 3-yr</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 10 — RECOGNITION -->
+<section class="cat" id="recognition">
+  <div class="cat-head"><span class="cat-num">10</span><h2>Recognition Lists &amp; Awards</h2></div>
+  <p class="cat-blurb">No time commitment, no relocation — pure recognition. Most are nomination-driven; a few accept self-nomination.</p>
+  <table class="fellowships">
+    <thead><tr><th>Program</th><th>What it is</th><th>Who</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr class="fship" data-region="global" data-stage="early" data-format="recognition"><td class="col-name"><a href="https://www.forbes.com/30-under-30/" target="_blank" rel="noopener">Forbes 30 Under 30</a></td><td class="col-desc">Forbes&rsquo; annual list of 600 honorees across 20 categories. Regional lists for Asia, Europe, etc.</td><td class="col-who">Under 30</td><td class="col-notes">Self-nom · Free</td></tr>
+      <tr class="fship" data-region="global" data-stage="mid" data-format="recognition"><td class="col-name"><a href="https://time.com/collection/time100-next/" target="_blank" rel="noopener">TIME 100 Next</a></td><td class="col-desc">TIME magazine&rsquo;s annual list of 100 rising leaders shaping the future across business, politics, climate, etc.</td><td class="col-who">Mid-career rising stars</td><td class="col-notes">Nomination</td></tr>
+      <tr class="fship" data-region="global" data-stage="senior" data-format="recognition"><td class="col-name"><a href="https://time.com/collection/100-most-influential-people/" target="_blank" rel="noopener">TIME 100 Most Influential</a></td><td class="col-desc">TIME magazine&rsquo;s flagship annual list. Includes TIME 100 AI, TIME 100 Companies, TIME 100 Health subcategories.</td><td class="col-who">Senior global influence</td><td class="col-notes">Editorial</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="recognition"><td class="col-name"><a href="https://fortune.com/40-under-40/" target="_blank" rel="noopener">Fortune 40 Under 40</a></td><td class="col-desc">Fortune magazine&rsquo;s annual list of 40 under 40 across business, tech, finance, media, etc.</td><td class="col-who">Under 40</td><td class="col-notes">Nomination</td></tr>
+      <tr class="fship" data-region="us" data-stage="early" data-format="recognition"><td class="col-name"><a href="https://www.inc.com/female-founders" target="_blank" rel="noopener">Inc. 30 Under 30 / Female Founders</a></td><td class="col-desc">Inc. magazine&rsquo;s recognition programs for emerging entrepreneurs and women founders.</td><td class="col-who">Entrepreneurs</td><td class="col-notes">Nomination</td></tr>
+      <tr class="fship" data-region="global" data-stage="mid" data-format="recognition"><td class="col-name"><a href="https://www.linkedin.com/pulse/linkedin-top-voices-program/" target="_blank" rel="noopener">LinkedIn Top Voices</a></td><td class="col-desc">LinkedIn&rsquo;s recognition program for thoughtful creators driving substantive conversation.</td><td class="col-who">Self-app</td><td class="col-notes">Free</td></tr>
+      <tr class="fship" data-region="global" data-stage="mid" data-format="recognition"><td class="col-name"><a href="https://fellowsblog.ted.com/" target="_blank" rel="noopener">TED Fellow</a></td><td class="col-desc">TED&rsquo;s flagship recognition for emerging innovators and changemakers. Mentorship + TED stage.</td><td class="col-who">Nomination</td><td class="col-notes">Funded</td></tr>
+      <tr class="fship" data-region="asia" data-stage="mid" data-format="recognition"><td class="col-name"><a href="https://www.tatlerasia.com/gen-t" target="_blank" rel="noopener">Tatler Asia Gen.T</a></td><td class="col-desc">Tatler Asia&rsquo;s annual list of Leaders of Tomorrow shaping Asia&rsquo;s future across 13 categories.</td><td class="col-who">Asia-based · Under 40</td><td class="col-notes">Nomination</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="recognition"><td class="col-name"><a href="https://www.wired.com/tag/wired25/" target="_blank" rel="noopener">WIRED 25</a></td><td class="col-desc">WIRED magazine&rsquo;s annual list of 25 people whose ideas are shaping the future.</td><td class="col-who">Tech leaders</td><td class="col-notes">Editorial</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="recognition"><td class="col-name"><a href="https://www.bloomberg.com/features/2024-the-bloomberg-50/" target="_blank" rel="noopener">Bloomberg 50</a></td><td class="col-desc">Bloomberg&rsquo;s annual list of 50 people who defined business, finance, technology, and politics.</td><td class="col-who">Senior leaders</td><td class="col-notes">Editorial</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="recognition"><td class="col-name"><a href="https://www.fastcompany.com/most-creative-people" target="_blank" rel="noopener">Fast Company Most Creative</a></td><td class="col-desc">Fast Company&rsquo;s annual recognition programs for innovators across industries.</td><td class="col-who">Innovators</td><td class="col-notes">Editorial</td></tr>
+      <tr class="fship" data-region="us" data-stage="mid" data-format="recognition"><td class="col-name"><a href="https://crainsnewyork.com/40-under-40" target="_blank" rel="noopener">Crain&rsquo;s NY 40 Under 40</a></td><td class="col-desc">Crain&rsquo;s recognition of NYC&rsquo;s rising business leaders under 40.</td><td class="col-who">NYC business</td><td class="col-notes">Nomination</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<footer>
+  <div class="contact">
+    <a href="mailto:phillip@phillipan.com">phillip@phillipan.com</a>
+    <a href="https://www.linkedin.com/in/phillipan/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/phillipan14" target="_blank" rel="noopener">GitHub</a>
+  </div>
+  <div>Boston &middot; Saigon</div>
+</footer>
+
+</div>
+
+<script>
+(function() {
+  const state = { region: 'all', stage: 'all', format: 'all', q: '' };
+  const chips = document.querySelectorAll('.chip');
+  const fships = document.querySelectorAll('tr.fship');
+  const countEl = document.querySelector('.results-meta .count');
+  const emptyEl = document.querySelector('.empty-state');
+  const searchEl = document.getElementById('search');
+
+  function applyFilters() {
+    let visible = 0;
+    const q = state.q.toLowerCase();
+    fships.forEach(el => {
+      const r = el.dataset.region || 'all';
+      const s = el.dataset.stage || 'all';
+      const f = el.dataset.format || 'all';
+      const text = el.textContent.toLowerCase();
+      const show =
+        (state.region === 'all' || r === state.region) &&
+        (state.stage === 'all' || s === state.stage) &&
+        (state.format === 'all' || f === state.format) &&
+        (q === '' || text.includes(q));
+      el.classList.toggle('hidden', !show);
+      if (show) visible++;
+    });
+    if (countEl) countEl.textContent = visible;
+    if (emptyEl) emptyEl.classList.toggle('show', visible === 0);
+
+    // hide empty categories
+    document.querySelectorAll('section.cat').forEach(section => {
+      const anyVisible = section.querySelectorAll('tr.fship:not(.hidden)').length > 0;
+      section.style.display = anyVisible ? '' : 'none';
+    });
+  }
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const filter = chip.dataset.filter;
+      const value = chip.dataset.value;
+      state[filter] = value;
+      document.querySelectorAll(`.chip[data-filter="${filter}"]`).forEach(c => {
+        c.classList.toggle('active', c.dataset.value === value);
+      });
+      applyFilters();
+    });
+  });
+
+  if (searchEl) {
+    let timer;
+    searchEl.addEventListener('input', e => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        state.q = e.target.value.trim();
+        applyFilters();
+      }, 150);
+    });
+  }
+
+  applyFilters();
+})();
+</script>
+
+</body>
+</html>
