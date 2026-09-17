@@ -183,6 +183,8 @@ body.home .honor .what .org { color: var(--ink-3); }
 body.home .honor .what a { color: var(--ink); border-bottom: 1px solid var(--hairline); }
 body.home .honor .what a:hover { color: var(--seal); border-bottom-color: var(--seal); }
 
+body.home .edu .honor { grid-template-columns: 92px 1fr; }
+
 /* --- footer --- */
 body.home footer {
   border-top: 1px solid var(--hairline);
