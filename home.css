@@ -84,9 +84,10 @@ body.home .seal {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Newsreader", Georgia, serif;
-  font-size: 37px;
-  font-weight: 500;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
   line-height: 1;
   box-shadow: inset 0 0 0 1.5px rgba(251,250,247,0.22), 0 1px 2px rgba(0,0,0,0.12);
   user-select: none;
