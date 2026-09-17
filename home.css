@@ -185,6 +185,9 @@ body.home .honor .what a:hover { color: var(--seal); border-bottom-color: var(--
 
 body.home .edu .honor { grid-template-columns: 92px 1fr; }
 
+body.home .venture.slim { padding: 14px 0; }
+body.home .venture.slim h3 { margin-bottom: 0; font-size: 19px; }
+
 /* --- footer --- */
 body.home footer {
   border-top: 1px solid var(--hairline);
