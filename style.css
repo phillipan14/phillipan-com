@@ -1,27 +1,27 @@
 :root {
-  /* Clean editorial — white background, charcoal text, restrained accent */
-  --bg: #FFFFFF;
-  --text: #0F0F12;
-  --text-2: #5A5C64;
-  --text-3: #8E9099;
-  --rule: #E5E5E8;
-  --link: #C45D35;             /* saffron accent (subtle, only on links) */
-  --link-hover: #0F0F12;
-  --link-underline: rgba(196, 93, 53, 0.32);
-  --accent: #C45D35;
+  /* Editorial — porcelain paper, ink, cinnabar accent */
+  --bg: #FBFAF7;
+  --text: #16181D;
+  --text-2: #4E525C;
+  --text-3: #878B96;
+  --rule: #E4E2DC;
+  --link: #BE3A21;             /* cinnabar accent */
+  --link-hover: #16181D;
+  --link-underline: rgba(190, 58, 33, 0.28);
+  --accent: #BE3A21;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0F0F12;
-    --text: #F2F2F4;
-    --text-2: #9DA0A8;
-    --text-3: #6A6D75;
-    --rule: #2A2B2F;
-    --link: #E89568;
+    --bg: #101114;
+    --text: #EDEBE6;
+    --text-2: #A5A8B0;
+    --text-3: #6E727C;
+    --rule: #26282D;
+    --link: #E05A3C;
     --link-hover: #FFFFFF;
-    --link-underline: rgba(232, 149, 104, 0.4);
-    --accent: #E89568;
+    --link-underline: rgba(224, 90, 60, 0.35);
+    --accent: #E05A3C;
   }
 }
 
@@ -30,7 +30,8 @@
 html { font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
 body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", system-ui, sans-serif;
+  font-family: "Newsreader", "Charter", "Iowan Old Style", Georgia, serif;
+  font-size: 1.03em;
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
@@ -56,7 +57,7 @@ nav.top {
 }
 
 nav.top .brand {
-  font-family: inherit;
+  font-family: "Fraunces", Georgia, serif;
   font-size: 16px;
   font-weight: 600;
   letter-spacing: -0.01em;
@@ -80,8 +81,10 @@ nav.top ul {
 }
 
 nav.top a {
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", sans-serif;
-  font-size: 14px;
+  font-family: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--text-2);
   text-decoration: none;
   border-bottom: 1px solid transparent;
@@ -101,7 +104,9 @@ nav.top a.current {
 
 /* === Headings === */
 h1 {
-  font-size: 28px;
+  font-family: "Fraunces", Georgia, serif;
+  font-optical-sizing: auto;
+  font-size: 30px;
   font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1.2;
@@ -115,11 +120,12 @@ h2 {
   letter-spacing: 0.12em;
   color: var(--text-3);
   margin-bottom: 24px;
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", sans-serif;
+  font-family: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
 }
 
 h3 {
-  font-size: 19px;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 20px;
   font-weight: 600;
   letter-spacing: -0.005em;
   line-height: 1.35;
@@ -166,7 +172,7 @@ hr {
 .page-header .kicker {
   font-size: 14px;
   color: var(--text-3);
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", sans-serif;
+  font-family: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   font-weight: 600;
@@ -197,7 +203,7 @@ hr {
   font-size: 14px;
   color: var(--text-3);
   font-variant-numeric: tabular-nums;
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", sans-serif;
+  font-family: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
   font-weight: 500;
   padding-top: 3px;
 }
@@ -221,7 +227,7 @@ hr {
 .item .meta {
   color: var(--text-3);
   font-size: 14px;
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", sans-serif;
+  font-family: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
   display: block;
   margin-top: 4px;
 }
@@ -306,7 +312,7 @@ article .post-body li a:hover,
 .projects .link {
   font-size: 13px;
   color: var(--text-3);
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", sans-serif;
+  font-family: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
   margin-top: 4px;
   display: inline-block;
 }
@@ -324,7 +330,7 @@ article .post-body li a:hover,
 
 .press .yr {
   color: var(--text-3);
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", sans-serif;
+  font-family: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
   font-size: 13px;
   font-variant-numeric: tabular-nums;
   margin-right: 10px;
@@ -370,7 +376,7 @@ footer a:hover {
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--text-3);
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", sans-serif;
+  font-family: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
   margin-bottom: 16px;
   margin-top: 32px;
 }
@@ -390,12 +396,13 @@ article header.post-header .kicker {
   text-transform: uppercase;
   letter-spacing: 0.12em;
   font-weight: 600;
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", sans-serif;
+  font-family: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
   margin-bottom: 12px;
 }
 
 article header.post-header h1 {
-  font-size: 32px;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 34px;
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.2;
@@ -405,7 +412,7 @@ article header.post-header h1 {
 article header.post-header .post-meta {
   font-size: 14px;
   color: var(--text-3);
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", sans-serif;
+  font-family: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
   font-variant-numeric: tabular-nums;
 }
 
@@ -434,7 +441,7 @@ article .post-body em {
 article .post-body h2 {
   font-size: 22px;
   font-weight: 700;
-  font-family: "Newsreader", "Charter", "Iowan Old Style", "Palatino", "Georgia", serif;
+  font-family: "Fraunces", Georgia, serif;
   text-transform: none;
   letter-spacing: -0.01em;
   color: var(--text);
@@ -494,7 +501,7 @@ article .post-body a:hover {
   gap: 24px;
   font-size: 14px;
   color: var(--text-3);
-  font-family: -apple-system, "Inter", sans-serif;
+  font-family: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
   margin-bottom: 32px;
 }
 
@@ -509,7 +516,7 @@ article .post-body a:hover {
 
 .post-footer .back-link {
   font-size: 14px;
-  font-family: -apple-system, "Inter", sans-serif;
+  font-family: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
 }
 
 /* === Post archive list (on /writings/) === */
@@ -530,13 +537,14 @@ article .post-body a:hover {
 .post-list .post-list-meta {
   font-size: 13px;
   color: var(--text-3);
-  font-family: -apple-system, "Inter", sans-serif;
+  font-family: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
   font-variant-numeric: tabular-nums;
   margin-bottom: 6px;
 }
 
 .post-list h3 {
-  font-size: 20px;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 21px;
   font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1.3;
