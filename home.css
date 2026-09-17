@@ -1,0 +1,247 @@
+/* ============================================================
+   home.css — loaded by index.html only.
+   Subpages keep style.css untouched.
+   Palette: porcelain paper / ink / cinnabar seal-red.
+   Type: Fraunces (display) · Newsreader (body) · IBM Plex Mono (utility)
+   ============================================================ */
+
+body.home {
+  --paper: #FBFAF7;
+  --ink: #16181D;
+  --ink-2: #4E525C;
+  --ink-3: #878B96;
+  --hairline: #E4E2DC;
+  --seal: #BE3A21;          /* cinnabar — the red of a name chop */
+  --seal-soft: rgba(190, 58, 33, 0.28);
+
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Newsreader", "Charter", "Iowan Old Style", Georgia, serif;
+  font-size: 17.5px;
+  line-height: 1.65;
+  padding: 44px 28px 120px;
+}
+
+@media (prefers-color-scheme: dark) {
+  body.home {
+    --paper: #101114;
+    --ink: #EDEBE6;
+    --ink-2: #A5A8B0;
+    --ink-3: #6E727C;
+    --hairline: #26282D;
+    --seal: #E05A3C;
+    --seal-soft: rgba(224, 90, 60, 0.35);
+  }
+}
+
+body.home .wrap { max-width: 680px; }
+
+/* --- utility voice: mono labels --- */
+body.home .mono {
+  font-family: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* --- nav --- */
+body.home nav.top {
+  border-bottom: 1px solid var(--hairline);
+  margin-bottom: 72px;
+}
+body.home nav.top .brand {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 600;
+  font-size: 17px;
+}
+body.home nav.top ul a {
+  font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+body.home nav.top ul a:hover { color: var(--seal); border-bottom-color: var(--seal); }
+
+/* --- hero --- */
+body.home .hero { margin-bottom: 76px; }
+
+body.home .seal {
+  width: 52px;
+  height: 52px;
+  border-radius: 7px;
+  background: var(--seal);
+  color: #FBFAF7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 28px;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.08);
+  user-select: none;
+}
+
+body.home .hero .eyebrow {
+  margin-bottom: 14px;
+  color: var(--seal);
+}
+
+body.home .hero h1 {
+  font-family: "Fraunces", Georgia, serif;
+  font-optical-sizing: auto;
+  font-size: clamp(40px, 7vw, 58px);
+  font-weight: 560;
+  letter-spacing: -0.015em;
+  line-height: 1.04;
+  margin-bottom: 24px;
+}
+
+body.home .hero .lede {
+  font-size: clamp(19px, 2.6vw, 22px);
+  line-height: 1.5;
+  color: var(--ink);
+  max-width: 620px;
+  margin-bottom: 18px;
+}
+
+body.home .hero .lede em {
+  font-style: italic;
+  color: var(--seal);
+}
+
+body.home .hero p.bio {
+  color: var(--ink-2);
+  max-width: 620px;
+  margin-bottom: 14px;
+}
+body.home .hero p.bio:last-child { margin-bottom: 0; }
+
+/* --- section chrome --- */
+body.home section { margin-bottom: 72px; }
+
+body.home .sec-head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 30px;
+}
+body.home .sec-head::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--hairline);
+  transform: translateY(-4px);
+}
+body.home .sec-head h2 {
+  font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 0;
+}
+
+/* --- ventures --- */
+body.home .venture {
+  display: grid;
+  grid-template-columns: 108px 1fr;
+  gap: 26px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--hairline);
+  align-items: baseline;
+}
+body.home .venture:first-of-type { padding-top: 0; }
+body.home .venture:last-of-type { border-bottom: none; padding-bottom: 0; }
+
+body.home .venture .tag { padding-top: 4px; }
+
+body.home .venture h3 {
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 21px;
+  font-weight: 560;
+  letter-spacing: -0.008em;
+  margin-bottom: 6px;
+}
+body.home .venture h3 a {
+  color: var(--ink);
+  border-bottom: 1px solid transparent;
+}
+body.home .venture h3 a:hover {
+  color: var(--seal);
+  border-bottom-color: var(--seal-soft);
+}
+body.home .venture p {
+  color: var(--ink-2);
+  font-size: 16.5px;
+}
+body.home .venture p a { border-bottom: 1px solid var(--seal-soft); color: var(--seal); }
+body.home .venture p a:hover { color: var(--ink); }
+
+/* --- recognition timeline --- */
+body.home .honor {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 26px;
+  padding: 11px 0;
+  align-items: baseline;
+}
+body.home .honor .yr {
+  font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  font-size: 13px;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+body.home .honor .what { color: var(--ink); font-size: 16.5px; }
+body.home .honor .what .org { color: var(--ink-3); }
+body.home .honor .what a { color: var(--ink); border-bottom: 1px solid var(--hairline); }
+body.home .honor .what a:hover { color: var(--seal); border-bottom-color: var(--seal); }
+
+/* --- footer --- */
+body.home footer {
+  border-top: 1px solid var(--hairline);
+  color: var(--ink-3);
+  font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  font-size: 13px;
+}
+body.home footer a { color: var(--ink-2); border-bottom: 1px solid var(--hairline); }
+body.home footer a:hover { color: var(--seal); border-bottom-color: var(--seal); }
+
+/* --- load sequence: one orchestrated rise --- */
+@media (prefers-reduced-motion: no-preference) {
+  body.home .rise {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  body.home .rise.d1 { animation-delay: 0.05s; }
+  body.home .rise.d2 { animation-delay: 0.15s; }
+  body.home .rise.d3 { animation-delay: 0.25s; }
+  body.home .rise.d4 { animation-delay: 0.38s; }
+  body.home .rise.d5 { animation-delay: 0.5s; }
+  @keyframes rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* --- selection + focus --- */
+body.home ::selection { background: var(--seal); color: var(--paper); }
+body.home a:focus-visible {
+  outline: 2px solid var(--seal);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* --- mobile --- */
+@media (max-width: 540px) {
+  body.home { padding: 28px 20px 72px; font-size: 16.5px; }
+  body.home nav.top { margin-bottom: 48px; }
+  body.home .hero { margin-bottom: 56px; }
+  body.home section { margin-bottom: 56px; }
+  body.home .venture { grid-template-columns: 1fr; gap: 4px; padding: 18px 0; }
+  body.home .honor { grid-template-columns: 52px 1fr; gap: 16px; }
+}
