@@ -638,3 +638,29 @@ footer { border-top: 1px solid var(--rule); padding-top: 28px; }
   .row { grid-template-columns: 1fr; gap: 2px; }
   .row .year { font-size: 13px; }
 }
+
+/* contact form */
+.note { display: grid; gap: 22px; margin-bottom: 48px; }
+.note .hp { position: absolute; left: -9999px; }
+.note .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.note label { display: grid; gap: 6px; font-size: 13px; color: var(--text-3); }
+.note input, .note textarea {
+  font: inherit; font-size: 16px; color: var(--text); background: transparent;
+  border: 0; border-bottom: 1px solid var(--rule); border-radius: 0; padding: 8px 0; outline: none;
+  transition: border-color .15s;
+}
+.note textarea { resize: vertical; min-height: 140px; line-height: 1.6; }
+.note input:focus, .note textarea:focus { border-bottom-color: var(--accent); }
+.note .send-row { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.note button {
+  font: inherit; font-size: 15px; font-weight: 500; color: var(--bg); background: var(--text);
+  border: 0; border-radius: 999px; padding: 11px 22px; cursor: pointer; transition: background .15s;
+}
+.note button:hover { background: var(--accent); }
+.note button:disabled { opacity: .5; cursor: default; }
+.note button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.note .status { font-size: 14px; color: var(--text-2); }
+.sent { font-size: 17px; color: var(--text); margin-bottom: 48px; }
+.contact-rows.elsewhere { margin-top: 8px; }
+@media (max-width: 540px) { .note .field-row { grid-template-columns: 1fr; } }
+[hidden] { display: none !important; }
