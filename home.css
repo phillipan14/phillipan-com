@@ -230,3 +230,49 @@ body.home a:focus-visible {
   body.home .venture { grid-template-columns: 1fr; gap: 4px; padding: 18px 0; }
   body.home .honor { grid-template-columns: 88px 1fr; gap: 14px; }
 }
+
+/* --- v4 polish: portrait, proof strip, writing list --- */
+body.home .hero-grid { display: grid; grid-template-columns: 1fr 168px; gap: 40px; align-items: end; }
+body.home .portrait img {
+  display: block; width: 168px; height: auto; aspect-ratio: 3 / 4; object-fit: cover;
+  border-radius: 6px; background: var(--hairline);
+  box-shadow: 0 1px 0 var(--hairline), 0 18px 40px -24px rgba(22, 24, 29, 0.35);
+}
+body.home .hero .lede { margin-bottom: 0; }
+body.home .hero p.bio { margin-top: 28px; }
+
+body.home .proof {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  margin: 36px 0 0; padding-top: 22px; border-top: 1px solid var(--hairline);
+}
+body.home .proof dt {
+  font-family: "Fraunces", Georgia, serif; font-size: 30px; font-weight: 560;
+  letter-spacing: -0.02em; line-height: 1.1; color: var(--seal);
+}
+body.home .proof dd {
+  margin: 6px 0 0; font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  font-size: 11.5px; letter-spacing: 0.04em; line-height: 1.5; color: var(--ink-3); text-transform: uppercase;
+}
+
+body.home .post {
+  display: grid; grid-template-columns: 108px 1fr; gap: 26px; align-items: baseline;
+  padding: 14px 0; border-bottom: 1px solid var(--hairline); color: var(--ink);
+}
+body.home .post .yr { font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+body.home .post .t { display: block; font-family: "Fraunces", Georgia, serif; font-size: 19px; font-weight: 520; }
+body.home .post .x { display: block; color: var(--ink-2); font-size: 15.5px; margin-top: 2px; }
+body.home .post:hover .t { color: var(--seal); }
+body.home .more { margin-top: 18px; padding-left: 134px; font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; font-size: 12.5px; letter-spacing: 0.06em; text-transform: uppercase; }
+body.home .more a { color: var(--seal); margin-right: 22px; }
+body.home .more a:hover { color: var(--ink); }
+
+@media (max-width: 540px) {
+  body.home .hero-grid { grid-template-columns: 1fr 96px; gap: 18px; align-items: start; }
+  body.home .portrait { order: 0; }
+  body.home .portrait img { width: 96px; }
+  body.home .proof { grid-template-columns: 1fr; gap: 14px; }
+  body.home .proof > div { display: grid; grid-template-columns: 88px 1fr; gap: 14px; align-items: baseline; }
+  body.home .proof dd { margin: 0; }
+  body.home .post { grid-template-columns: 1fr; gap: 2px; }
+  body.home .more { padding-left: 0; }
+}
